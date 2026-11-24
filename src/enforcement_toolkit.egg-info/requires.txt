@@ -1,0 +1,11 @@
+anthropic>=0.40
+pydantic>=2.6
+pyyaml>=6.0
+pypdf>=4.0
+pandas>=2.2
+numpy>=1.26
+pandera>=0.20
+
+[dev]
+pytest>=8
+ruff>=0.5

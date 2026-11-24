@@ -1,0 +1,9 @@
+model: claude-sonnet-5-5
+max_tokens: 4096
+input_dir: data/raw/decisions
+output_dir: data/processed/extraction_run
+cache_dir: data/processed/.llm_cache
+pipeline:
+  workers: 4
+  review_threshold: 0.7
+  max_chars: 400000

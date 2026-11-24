@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check src tests
+
+      - name: Format check
+        run: ruff format --check src tests
+
+      - name: Tests
+        # Tests use a fake LLM client: no API key, no cost, deterministic.
+        run: pytest -v
+
+      - name: Smoke test - validate sample data
+        if: matrix.python-version == '3.14'
+        run: |
+          python -m enforcement_toolkit.validation.cli sample --out data/sample
+          python -m enforcement_toolkit.validation.cli validate --config config/validation.yaml
+
+      - name: Upload data-quality report
+        if: matrix.python-version == '3.14'
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-quality-report
+          path: reports/data_quality/

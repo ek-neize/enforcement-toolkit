@@ -1,0 +1,214 @@
+# Data Quality Report
+
+**Status: FAIL** · 6 error type(s), 10 warning type(s) · generated 2026-11-23T23:03:51+00:00
+
+**Errors** mean rows were quarantined and left out of the analysis until resolved with the data provider or case team. **Warnings** do not block analysis but need an analyst's review.
+
+## Source files (chain of custody)
+
+| file | sha256 | bytes | registered | changed since last run |
+|---|---|---|---|---|
+| data/sample/prices.csv | `f758b01daa7e2ce6…` | 35246 | 2026-11-23T23:03:51+00:00 | no |
+| data/sample/insider_trades.csv | `7b12018d8f8d0add…` | 880 | 2026-11-23T23:03:51+00:00 | no |
+| data/sample/events.csv | `7d01d229c9318854…` | 394 | 2026-11-23T23:03:51+00:00 | no |
+
+## Datasets
+
+| dataset | raw rows | valid | quarantined | date range | tickers |
+|---|---|---|---|---|---|
+| prices | 784 | 779 | 4 | 2024-01-02 → 2024-12-31 | 3 |
+| insider_trades | 12 | 11 | 1 | 2024-02-01 → 2024-11-05 | 4 |
+| events | 5 | 3 | 2 | 2024-01-10 → 2024-10-24 | 2 |
+
+## Issues found
+
+| severity | dataset | check | rows |
+|---|---|---|---|
+| ERROR | events | conflicting_duplicates | 2 |
+| ERROR | insider_trades | filing_not_before_trade | 1 |
+| ERROR | prices | conflicting_duplicates | 2 |
+| ERROR | prices | high_is_daily_max | 2 |
+| ERROR | prices | low_is_daily_min | 1 |
+| ERROR | prices | unparseable_number | 1 |
+| WARNING | events | insufficient_price_window | 1 |
+| WARNING | insider_trades | late_filings | 2 |
+| WARNING | insider_trades | no_price_coverage | 2 |
+| WARNING | insider_trades | possible_duplicate_reports | 2 |
+| WARNING | insider_trades | price_outside_daily_range | 1 |
+| WARNING | prices | exact_duplicate_rows | 1 |
+| WARNING | prices | extreme_daily_returns | 2 |
+| WARNING | prices | missing_trading_days | 4 |
+| WARNING | prices | stale_prices | 1 |
+| WARNING | prices | zero_volume_runs | 1 |
+
+## Details
+
+### [ERROR] events · conflicting_duplicates (2)
+
+Several rows share the same key ['event_id'] but have different values. All of them are quarantined until the correct one is confirmed.
+
+Examples:
+
+| csv_line | event_id | ticker | event_date | event_type | headline |
+|---|---|---|---|---|---|
+| 3 | E002 | BRL | 2024-08-08 | earnings | Boreal Resources Q2 earnings beat |
+| 6 | E002 | BRL | 2024-08-09 | earnings | Boreal Resources Q2 earnings (corrected date?) |
+
+### [ERROR] insider_trades · filing_not_before_trade (1)
+
+Row failed the rule `filing_not_before_trade`. The filing date is earlier than the trade date: one of the two dates is wrong. Rows quarantined.
+
+Examples:
+
+| csv_line | trade_id | insider_name | insider_role | ticker | trade_date | filing_date | transaction_type | shares | price |
+|---|---|---|---|---|---|---|---|---|---|
+| 8 | T007 | Leo Tremblay | VP Ops | CNDR | 2024-04-10 | 2024-04-08 | buy | 1000.0 | 10.39 |
+
+### [ERROR] prices · conflicting_duplicates (2)
+
+Several rows share the same key ['date', 'ticker'] but have different values. All of them are quarantined until the correct one is confirmed.
+
+Examples:
+
+| csv_line | date | ticker | open | high | low | close | volume |
+|---|---|---|---|---|---|---|---|
+| 328 | 2024-04-02 | BRL | 49.32 | 49.62 | 48.64 | 48.77 | 146775.0 |
+| 785 | 2024-04-02 | BRL | 49.32 | 49.62 | 48.64 | 50.27 | 146775.0 |
+
+### [ERROR] prices · high_is_daily_max (2)
+
+Row failed the rule `high_is_daily_max`. The day's high is below its open, low or close, which is impossible. Usually columns swapped or a bad tick. Rows quarantined.
+
+Examples:
+
+| csv_line | date | ticker | open | high | low | close | volume |
+|---|---|---|---|---|---|---|---|
+| 612 | 2024-05-06 | CNDR | 10.01 | 9.98 | 10.1 | 10.08 | 123925.0 |
+| 785 | 2024-04-02 | BRL | 49.32 | 49.62 | 48.64 | 50.27 | 146775.0 |
+
+### [ERROR] prices · low_is_daily_min (1)
+
+Row failed the rule `low_is_daily_min`. The day's low is above its open, high or close, which is impossible. Rows quarantined.
+
+Examples:
+
+| csv_line | date | ticker | open | high | low | close | volume |
+|---|---|---|---|---|---|---|---|
+| 612 | 2024-05-06 | CNDR | 10.01 | 9.98 | 10.1 | 10.08 | 123925.0 |
+
+### [ERROR] prices · unparseable_number (1)
+
+`volume` has values that are not valid numbers.
+
+Examples:
+
+| csv_line | date | ticker | open | high | low | close | volume |
+|---|---|---|---|---|---|---|---|
+| 146 | 2024-07-22 | ACME | 18.27 | 18.28 | 18.14 | 18.16 | n/a |
+
+### [WARNING] events · insufficient_price_window (1)
+
+Price data does not cover 30 days before to 5 days after the event, so it cannot be fully analysed.
+
+Examples:
+
+| csv_line | event_id | ticker | event_date | prices_from | prices_to |
+|---|---|---|---|---|---|
+| 5 | E004 | CNDR | 2024-01-10 | 2024-01-02 | 2024-12-31 |
+
+### [WARNING] insider_trades · late_filings (2)
+
+Filed more than 5 calendar days after the trade. Not a data error, but late reporting is itself of enforcement interest.
+
+Examples:
+
+| csv_line | trade_id | insider_name | ticker | trade_date | filing_date | lag_days |
+|---|---|---|---|---|---|---|
+| 9 | T008 | Marc Olsen | ACME | 2024-06-12 | 2024-07-02 | 20 |
+| 11 | T010 | Dana Whitfield | ACME | 2024-06-04 | 2024-06-20 | 16 |
+
+### [WARNING] insider_trades · no_price_coverage (2)
+
+Trades that cannot be matched to market prices, so they cannot be analysed. Check for a weekend/holiday trade date or a ticker mismatch.
+
+Examples:
+
+| csv_line | trade_id | ticker | trade_date | reason |
+|---|---|---|---|---|
+| 12 | T011 | ZZZZ | 2024-05-01 | ticker not in price file |
+| 13 | T012 | CNDR | 2024-09-14 | no price row on trade date |
+
+### [WARNING] insider_trades · possible_duplicate_reports (2)
+
+Same insider, ticker, date, side, size and price under different trade IDs. Often an amended filing; counting both would double the position.
+
+Examples:
+
+| csv_line | trade_id | insider_name | insider_role | ticker | trade_date | filing_date | transaction_type | shares | price |
+|---|---|---|---|---|---|---|---|---|---|
+| 2 | T001 | Dana Whitfield | CFO | ACME | 2024-06-04 | 2024-06-06 | buy | 20000.0 | 15.14 |
+| 11 | T010 | Dana Whitfield | CFO | ACME | 2024-06-04 | 2024-06-20 | buy | 20000.0 | 15.14 |
+
+### [WARNING] insider_trades · price_outside_daily_range (1)
+
+Reported trade price is outside the stock's low-high range that day. Usually a typo in the filing (e.g. wrong decimal place) or an off-market trade.
+
+Examples:
+
+| csv_line | trade_id | ticker | trade_date | transaction_type | price | low | high |
+|---|---|---|---|---|---|---|---|
+| 10 | T009 | BRL | 2024-05-14 | buy | 538.5 | 53.65 | 55.63 |
+
+### [WARNING] prices · exact_duplicate_rows (1)
+
+Identical rows appear more than once. Extra copies were dropped (first kept).
+
+Examples:
+
+| csv_line | date | ticker | open | high | low | close | volume |
+|---|---|---|---|---|---|---|---|
+| 784 | 2024-02-01 | ACME | 17.25 | 17.28 | 16.87 | 16.87 | 219680.0 |
+
+### [WARNING] prices · extreme_daily_returns (2)
+
+Close-to-close moves larger than 50%. Could be a stock split, a data error, or a genuine price-moving event. Confirm before running event studies.
+
+Examples:
+
+| csv_line | ticker | date | close | prev_close | ret |
+|---|---|---|---|---|---|
+| 443 | BRL | 2024-09-10 | 479.9 | 47.73 | 9.0545 |
+| 444 | BRL | 2024-09-11 | 47.92 | 479.9 | -0.9001 |
+
+### [WARNING] prices · missing_trading_days (4)
+
+Gaps in the price history, measured against dates on which other tickers in the file traded. Could be a data gap or a trading halt; a halt is itself worth knowing about.
+
+Examples:
+
+| ticker | missing_date | reason |
+|---|---|---|
+| CNDR | 2024-03-15 | no row in file |
+| ACME | 2024-07-22 | row quarantined (see errors) |
+| BRL | 2024-04-02 | row quarantined (see errors) |
+| CNDR | 2024-05-06 | row quarantined (see errors) |
+
+### [WARNING] prices · stale_prices (1)
+
+Close unchanged for 5+ consecutive days: the feed may be carrying forward an old price.
+
+Examples:
+
+| ticker | start | end | days |
+|---|---|---|---|
+| CNDR | 2024-08-06 | 2024-08-12 | 5 |
+
+### [WARNING] prices · zero_volume_runs (1)
+
+3+ consecutive days with zero volume: possible halt, delisting, or a feed that stopped updating.
+
+Examples:
+
+| ticker | start | end | days |
+|---|---|---|---|
+| CNDR | 2024-08-05 | 2024-08-12 | 6 |
