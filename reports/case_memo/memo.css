@@ -1,0 +1,24 @@
+@page { size: Letter; margin: 0.8in; }
+body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 11pt; line-height: 1.4; color: #0b0b0b; max-width: 7in; margin: auto; }
+h1 { font-size: 18pt; letter-spacing: 0.08em; margin: 0 0 6pt; }
+h2 { font-size: 12.5pt; margin: 12pt 0 4pt; page-break-after: avoid; border-bottom: 1px solid #d8d7d2; padding-bottom: 2pt; }
+h3 { font-size: 11pt; margin: 12pt 0 4pt; page-break-after: avoid; }
+table { border-collapse: collapse; width: 100%; font-size: 10pt; margin: 4pt 0 6pt; page-break-inside: avoid; }
+th, td { text-align: left; padding: 3pt 6pt; border-bottom: 1px solid #e6e5e1; vertical-align: top; }
+th { color: #52514e; font-weight: 600; }
+blockquote { margin: 0 0 10pt; padding: 6pt 10pt; background: #f0efec; border-left: 3px solid #a8a7a2; font-size: 9.5pt; color: #52514e; }
+blockquote p { margin: 0; }
+li { margin-bottom: 3pt; }
+img { width: 100%; page-break-inside: avoid; }
+hr { border: none; page-break-after: always; }
+code { font-size: 9pt; background: #f0efec; padding: 0 2pt; }
+.pagebreak { page-break-after: always; }
+p { margin: 4pt 0; }
+section { page-break-inside: avoid; }          /* keep each heading with its content */
+section.exhibit { page-break-inside: auto; }
+td:first-child, th:first-child { white-space: nowrap; width: 1%; }
+col { width: auto !important; }
+table { table-layout: auto; }
+#who-traded-and-how-they-are-connected { page-break-inside: auto; }
+td:nth-child(n+3), th:nth-child(n+3) { white-space: nowrap; }
+p, li { page-break-inside: avoid; }

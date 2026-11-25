@@ -54,11 +54,20 @@ enforcement-toolkit/
 │       ├── report.py              #   report + GraphML for Gephi
 │       └── cli.py
 ├── notebooks/                     # 🔜 training walkthrough for non-technical staff
-├── reports/                       # 🔜 case memo, evaluation report
+├── reports/                       # generated reports; case_memo/ = the write-up for a case team
 ├── tests/
 ├── METHODOLOGY.md                 # assumptions, limitations, how to reproduce
 └── pyproject.toml
 ```
+
+## 📄 Case memo: what this looks like for a case team
+
+**[ACME case memo (PDF)](reports/case_memo/ACME_case_memo.pdf)** · [Markdown version](reports/case_memo/ACME_case_memo.md)
+
+A two-page memo, with exhibits, of the kind a data science team would send to investigators. It combines
+Modules 1–3: what happened before the ACME takeover, who traded, how they connect, what the analysis does
+**not** show, and the recommended next steps. All names and figures are fictional (synthetic data).
+Rebuild the PDF with `reports/case_memo/build_pdf.sh`.
 
 ## Module 1: Data intake and validation
 
