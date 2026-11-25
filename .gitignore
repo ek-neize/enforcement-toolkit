@@ -4,3 +4,9 @@ data/processed/*
 !data/processed/.gitkeep
 __pycache__/
 .env
+
+# build artefacts
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
