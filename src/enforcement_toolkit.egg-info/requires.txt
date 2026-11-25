@@ -5,6 +5,7 @@ pypdf>=4.0
 pandas>=2.2
 numpy>=1.26
 pandera>=0.20
+matplotlib>=3.8
 
 [dev]
 pytest>=8

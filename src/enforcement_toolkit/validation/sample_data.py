@@ -10,7 +10,10 @@ Planted issues (inject_issues=True)
   trades:  filing before trade, late filing, price outside daily range,
            duplicate report under a new ID, unknown ticker, weekend trade date
   events:  conflicting duplicate event_id, event too early for the price history
-Also planted for Module 2: insider buys at ACME shortly before a takeover announcement.
+Also planted for Module 2 (detection):
+  * ACME takeover (2024-06-17): price run-up and 3x volume beforehand; CFO and a director buy before it
+  * CNDR guidance cut (2024-10-24): a VP sells 7 trading days before the drop
+  * MKT is a fictional market index; stock returns follow a market model (beta x market + noise)
 """
 
 from __future__ import annotations
@@ -21,38 +24,49 @@ import numpy as np
 import pandas as pd
 
 START, END = "2024-01-02", "2024-12-31"
-TICKERS = {"ACME": 20.0, "BRL": 55.0, "CNDR": 8.0}
+MARKET_TICKER = "MKT"  # fictional broad-market index, used as the benchmark in Module 2
+TICKERS = {"ACME": (20.0, 1.2), "BRL": (55.0, 0.9), "CNDR": (8.0, 1.4)}  # start price, beta
 TAKEOVER_DATE = "2024-06-17"
+GUIDANCE_CUT_DATE = "2024-10-24"
+
+
+def _ohlcv(rng, dates, ticker, p0, rets, vol):
+    close = p0 * np.cumprod(1 + rets)
+    open_ = np.r_[p0, close[:-1]] * (1 + rng.normal(0, 0.004, len(dates)))
+    high = np.maximum(open_, close) * (1 + np.abs(rng.normal(0, 0.006, len(dates))))
+    low = np.minimum(open_, close) * (1 - np.abs(rng.normal(0, 0.006, len(dates))))
+    return pd.DataFrame(
+        {
+            "date": dates.strftime("%Y-%m-%d"),
+            "ticker": ticker,
+            "open": open_.round(2),
+            "high": high.round(2),
+            "low": low.round(2),
+            "close": close.round(2),
+            "volume": vol.astype(int).astype(str),
+        }
+    )
 
 
 def _prices(rng: np.random.Generator) -> pd.DataFrame:
     dates = pd.bdate_range(START, END)
-    frames = []
-    for ticker, p0 in TICKERS.items():
-        rets = rng.normal(0.0003, 0.018, len(dates))
+    n = len(dates)
+    mkt = rng.normal(0.0003, 0.009, n)
+    frames = [_ohlcv(rng, dates, MARKET_TICKER, 1000.0, mkt, rng.lognormal(16, 0.2, n))]
+    for ticker, (p0, beta) in TICKERS.items():
+        rets = beta * mkt + rng.normal(0, 0.015, n)  # market model: stocks move with the market
+        vol = rng.lognormal(12, 0.35, n)
         if ticker == "ACME":
-            rets[dates.get_loc(pd.Timestamp(TAKEOVER_DATE))] = 0.38  # takeover premium
-        close = p0 * np.cumprod(1 + rets)
-        open_ = np.r_[p0, close[:-1]] * (1 + rng.normal(0, 0.004, len(dates)))
-        high = np.maximum(open_, close) * (1 + np.abs(rng.normal(0, 0.006, len(dates))))
-        low = np.minimum(open_, close) * (1 - np.abs(rng.normal(0, 0.006, len(dates))))
-        vol = rng.lognormal(12, 0.4, len(dates)).astype(int)
-        if ticker == "ACME":  # unusual volume in the days before the announcement
-            pre = (dates >= "2024-06-03") & (dates < TAKEOVER_DATE)
-            vol[pre] *= 3
-        frames.append(
-            pd.DataFrame(
-                {
-                    "date": dates.strftime("%Y-%m-%d"),
-                    "ticker": ticker,
-                    "open": open_.round(2),
-                    "high": high.round(2),
-                    "low": low.round(2),
-                    "close": close.round(2),
-                    "volume": vol.astype(str),
-                }
-            )
-        )
+            t0 = dates.get_loc(pd.Timestamp(TAKEOVER_DATE))
+            rets[t0 - 6 : t0] += 0.008  # quiet run-up as news leaks
+            vol[t0 - 10 : t0] *= 3  # unusual volume before the announcement
+            rets[t0] = 0.38  # takeover premium
+            vol[t0] *= 8
+        if ticker == "CNDR":
+            t0 = dates.get_loc(pd.Timestamp(GUIDANCE_CUT_DATE))
+            rets[t0] = -0.18  # guidance cut
+            vol[t0] *= 6
+        frames.append(_ohlcv(rng, dates, ticker, p0, rets, vol))
     return pd.concat(frames, ignore_index=True)
 
 

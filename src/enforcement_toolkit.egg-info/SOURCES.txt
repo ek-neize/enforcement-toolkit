@@ -7,6 +7,12 @@ src/enforcement_toolkit.egg-info/SOURCES.txt
 src/enforcement_toolkit.egg-info/dependency_links.txt
 src/enforcement_toolkit.egg-info/requires.txt
 src/enforcement_toolkit.egg-info/top_level.txt
+src/enforcement_toolkit/detection/__init__.py
+src/enforcement_toolkit/detection/charts.py
+src/enforcement_toolkit/detection/cli.py
+src/enforcement_toolkit/detection/event_study.py
+src/enforcement_toolkit/detection/report.py
+src/enforcement_toolkit/detection/screening.py
 src/enforcement_toolkit/extraction/__init__.py
 src/enforcement_toolkit/extraction/cli.py
 src/enforcement_toolkit/extraction/evaluate.py
@@ -24,5 +30,6 @@ src/enforcement_toolkit/validation/loader.py
 src/enforcement_toolkit/validation/report.py
 src/enforcement_toolkit/validation/sample_data.py
 src/enforcement_toolkit/validation/schemas.py
+tests/test_detection.py
 tests/test_extraction.py
 tests/test_validation.py

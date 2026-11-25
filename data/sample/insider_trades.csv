@@ -1,13 +1,13 @@
 trade_id,insider_name,insider_role,ticker,trade_date,filing_date,transaction_type,shares,price
-T001,Dana Whitfield,CFO,ACME,2024-06-04,2024-06-06,buy,20000,15.14
-T002,Marc Olsen,Director,ACME,2024-06-11,2024-06-13,buy,15000,14.72
-T003,Priya Raman,CEO,BRL,2024-03-12,2024-03-14,sell,5000,51.03
+T001,Dana Whitfield,CFO,ACME,2024-06-04,2024-06-06,buy,20000,16.04
+T002,Marc Olsen,Director,ACME,2024-06-11,2024-06-13,buy,15000,16.01
+T003,Priya Raman,CEO,BRL,2024-03-12,2024-03-14,sell,5000,57.48
 T004,Priya Raman,CEO,BRL,2024-02-01,2024-02-02,grant,10000,0.0
-T005,Leo Tremblay,VP Ops,CNDR,2024-10-15,2024-10-17,sell,8000,8.21
-T006,Ana Costa,Director,BRL,2024-11-05,2024-11-07,buy,2500,60.72
-T007,Leo Tremblay,VP Ops,CNDR,2024-04-10,2024-04-08,buy,1000,10.39
-T008,Marc Olsen,Director,ACME,2024-06-12,2024-07-02,buy,5000,14.8
-T009,Ana Costa,Director,BRL,2024-05-14,2024-05-15,buy,1200,538.5
-T010,Dana Whitfield,CFO,ACME,2024-06-04,2024-06-20,buy,20000,15.14
+T005,Leo Tremblay,VP Ops,CNDR,2024-10-15,2024-10-17,sell,8000,8.15
+T006,Ana Costa,Director,BRL,2024-11-05,2024-11-07,buy,2500,41.71
+T007,Leo Tremblay,VP Ops,CNDR,2024-04-10,2024-04-08,buy,1000,6.73
+T008,Marc Olsen,Director,ACME,2024-06-12,2024-07-02,buy,5000,16.25
+T009,Ana Costa,Director,BRL,2024-05-14,2024-05-15,buy,1200,591.2
+T010,Dana Whitfield,CFO,ACME,2024-06-04,2024-06-20,buy,20000,16.04
 T011,Sam Reid,Director,ZZZZ,2024-05-01,2024-05-02,buy,300,4.1
 T012,Leo Tremblay,VP Ops,CNDR,2024-09-14,2024-09-16,sell,700,7.9

@@ -1,0 +1,4 @@
+event_id,ticker,event_date,event_type,status,beta,car_event_pct,t_event,material,car_pre_event_pct,t_pre_event,volume_z_pre_event,estimation_days
+E004,CNDR,2024-01-10,guidance,only 0 estimation days (need 60),,,,False,,,,0
+E001,ACME,2024-06-17,m_and_a,ok,1.41,39.88,15.93,True,0.76,0.14,3.26,108
+E003,CNDR,2024-10-24,guidance,ok,1.56,-15.21,-6.46,True,-0.67,-0.13,0.62,110

@@ -42,15 +42,18 @@ jobs:
         # Tests use a fake LLM client: no API key, no cost, deterministic.
         run: pytest -v
 
-      - name: Smoke test - validate sample data
+      - name: Smoke test - validate sample data and run detection
         if: matrix.python-version == '3.14'
         run: |
           python -m enforcement_toolkit.validation.cli sample --out data/sample
           python -m enforcement_toolkit.validation.cli validate --config config/validation.yaml
+          python -m enforcement_toolkit.detection.cli --config config/detection.yaml
 
-      - name: Upload data-quality report
+      - name: Upload reports
         if: matrix.python-version == '3.14'
         uses: actions/upload-artifact@v4
         with:
-          name: data-quality-report
-          path: reports/data_quality/
+          name: reports
+          path: |
+            reports/data_quality/
+            reports/detection/
