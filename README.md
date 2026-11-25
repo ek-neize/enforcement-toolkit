@@ -1,6 +1,6 @@
 # Enforcement Analytics Toolkit
 
-[![CI](https://github.com/YOUR_USERNAME/enforcement-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/enforcement-toolkit/actions/workflows/ci.yml)
+[![CI](https://github.com/ek-neize/enforcement-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/ek-neize/enforcement-toolkit/actions/workflows/ci.yml)
 
 Python tools that support securities-enforcement work: data validation, detection of
 suspicious trading, LLM-assisted document review and entity-relationship analysis.
@@ -41,7 +41,12 @@ enforcement-toolkit/
 │   │   ├── report.py              #   run everything, write report + issues.json
 │   │   ├── sample_data.py         #   fictional demo data with planted problems
 │   │   └── cli.py
-│   ├── detection/                 # 🔜 event study / insider-trading flags, spoofing
+│   ├── detection/                 # ✅ Module 2: insider-trading screen
+│   │   ├── event_study.py         #   market model, abnormal returns, CAR, t-stats, abnormal volume
+│   │   ├── screening.py           #   match trades to news, flag, score with reasons
+│   │   ├── charts.py              #   one chart per event with insider trades marked
+│   │   ├── report.py              #   case-team report + CSVs
+│   │   └── cli.py
 │   └── graph/                     # 🔜 entity-relationship network (networkx)
 ├── notebooks/                     # 🔜 training walkthrough for non-technical staff
 ├── reports/                       # 🔜 case memo, evaluation report
@@ -65,6 +70,25 @@ python -m enforcement_toolkit.validation.cli verify-custody                 # pr
 Outputs go to `reports/data_quality/`: `data_quality_report.md`, `issues.json` and one
 `quarantine_<dataset>.csv` per dataset. Downstream modules call `run_validation(...).frames()` and
 only ever see validated rows. Rules and limitations are in [METHODOLOGY.md](METHODOLOGY.md).
+
+## Module 2: Insider-trading screen
+
+> **Plain-language summary:** For each piece of company news, the tool measures how much the
+> stock moved *beyond what the overall market did*, and whether that move was too big to be
+> chance. It then finds insiders who traded shortly before that news, in the direction that
+> would profit, and ranks them. Every point in a trade's score comes with a written reason. The
+> output is a list of leads for investigators, not accusations.
+
+```bash
+python -m enforcement_toolkit.detection.cli --config config/detection.yaml
+```
+This runs Module 1 first, so detection only ever uses validated rows. Outputs go to
+`reports/detection/`: `detection_report.md` (ranked trades, a short narrative for each, and
+charts), `event_study.csv` and `screened_trades.csv`.
+
+On the sample data it flags the CFO and a director buying ACME before its takeover
+(High priority) and a VP selling CNDR before a guidance cut (Medium). Ordinary trades with no
+news nearby are not flagged.
 
 ## Module 4: LLM document review: design choices (and why they matter for enforcement work)
 
@@ -102,4 +126,4 @@ python -m enforcement_toolkit.extraction.cli evaluate \
 
 ## Continuous integration
 Every push and pull request runs on GitHub Actions (`.github/workflows/ci.yml`): `ruff` lint and format checks,
-then the test suite on Python 3.10–3.12, then a smoke run of the validator whose report is saved as a build artifact. The tests use a fake LLM client, so CI needs no API key and costs nothing.
+then the test suite on Python 3.10–3.12, then a smoke run of the validator and the detection, whose reports are saved as build artifacts. The tests use a fake LLM client, so CI needs no API key and costs nothing.

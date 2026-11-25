@@ -1,6 +1,6 @@
 # Data Quality Report
 
-**Status: FAIL** · 6 error type(s), 10 warning type(s) · generated 2026-11-23T23:03:51+00:00
+**Status: FAIL** · 6 error type(s), 10 warning type(s) · generated 2026-11-24T23:52:00+00:00
 
 **Errors** mean rows were quarantined and left out of the analysis until resolved with the data provider or case team. **Warnings** do not block analysis but need an analyst's review.
 
@@ -8,15 +8,15 @@
 
 | file | sha256 | bytes | registered | changed since last run |
 |---|---|---|---|---|
-| data/sample/prices.csv | `f758b01daa7e2ce6…` | 35246 | 2026-11-23T23:03:51+00:00 | no |
-| data/sample/insider_trades.csv | `7b12018d8f8d0add…` | 880 | 2026-11-23T23:03:51+00:00 | no |
-| data/sample/events.csv | `7d01d229c9318854…` | 394 | 2026-11-23T23:03:51+00:00 | no |
+| data/sample/prices.csv | `dc8a8d244886873e…` | 48424 | 2026-11-24T23:52:00+00:00 | no |
+| data/sample/insider_trades.csv | `3fa3a9be49e21593…` | 880 | 2026-11-24T23:52:00+00:00 | no |
+| data/sample/events.csv | `7d01d229c9318854…` | 394 | 2026-11-24T23:52:00+00:00 | no |
 
 ## Datasets
 
 | dataset | raw rows | valid | quarantined | date range | tickers |
 |---|---|---|---|---|---|
-| prices | 784 | 779 | 4 | 2024-01-02 → 2024-12-31 | 3 |
+| prices | 1045 | 1040 | 4 | 2024-01-02 → 2024-12-31 | 4 |
 | insider_trades | 12 | 11 | 1 | 2024-02-01 → 2024-11-05 | 4 |
 | events | 5 | 3 | 2 | 2024-01-10 → 2024-10-24 | 2 |
 
@@ -62,7 +62,7 @@ Examples:
 
 | csv_line | trade_id | insider_name | insider_role | ticker | trade_date | filing_date | transaction_type | shares | price |
 |---|---|---|---|---|---|---|---|---|---|
-| 8 | T007 | Leo Tremblay | VP Ops | CNDR | 2024-04-10 | 2024-04-08 | buy | 1000.0 | 10.39 |
+| 8 | T007 | Leo Tremblay | VP Ops | CNDR | 2024-04-10 | 2024-04-08 | buy | 1000.0 | 6.73 |
 
 ### [ERROR] prices · conflicting_duplicates (2)
 
@@ -72,8 +72,8 @@ Examples:
 
 | csv_line | date | ticker | open | high | low | close | volume |
 |---|---|---|---|---|---|---|---|
-| 328 | 2024-04-02 | BRL | 49.32 | 49.62 | 48.64 | 48.77 | 146775.0 |
-| 785 | 2024-04-02 | BRL | 49.32 | 49.62 | 48.64 | 50.27 | 146775.0 |
+| 589 | 2024-04-02 | BRL | 59.33 | 62.53 | 59.33 | 62.23 | 271635.0 |
+| 1046 | 2024-04-02 | BRL | 59.33 | 62.53 | 59.33 | 63.73 | 271635.0 |
 
 ### [ERROR] prices · high_is_daily_max (2)
 
@@ -83,8 +83,8 @@ Examples:
 
 | csv_line | date | ticker | open | high | low | close | volume |
 |---|---|---|---|---|---|---|---|
-| 612 | 2024-05-06 | CNDR | 10.01 | 9.98 | 10.1 | 10.08 | 123925.0 |
-| 785 | 2024-04-02 | BRL | 49.32 | 49.62 | 48.64 | 50.27 | 146775.0 |
+| 873 | 2024-05-06 | CNDR | 7.15 | 7.13 | 7.27 | 7.23 | 129284.0 |
+| 1046 | 2024-04-02 | BRL | 59.33 | 62.53 | 59.33 | 63.73 | 271635.0 |
 
 ### [ERROR] prices · low_is_daily_min (1)
 
@@ -94,7 +94,7 @@ Examples:
 
 | csv_line | date | ticker | open | high | low | close | volume |
 |---|---|---|---|---|---|---|---|
-| 612 | 2024-05-06 | CNDR | 10.01 | 9.98 | 10.1 | 10.08 | 123925.0 |
+| 873 | 2024-05-06 | CNDR | 7.15 | 7.13 | 7.27 | 7.23 | 129284.0 |
 
 ### [ERROR] prices · unparseable_number (1)
 
@@ -104,7 +104,7 @@ Examples:
 
 | csv_line | date | ticker | open | high | low | close | volume |
 |---|---|---|---|---|---|---|---|
-| 146 | 2024-07-22 | ACME | 18.27 | 18.28 | 18.14 | 18.16 | n/a |
+| 407 | 2024-07-22 | ACME | 20.73 | 20.98 | 20.72 | 20.97 | n/a |
 
 ### [WARNING] events · insufficient_price_window (1)
 
@@ -146,8 +146,8 @@ Examples:
 
 | csv_line | trade_id | insider_name | insider_role | ticker | trade_date | filing_date | transaction_type | shares | price |
 |---|---|---|---|---|---|---|---|---|---|
-| 2 | T001 | Dana Whitfield | CFO | ACME | 2024-06-04 | 2024-06-06 | buy | 20000.0 | 15.14 |
-| 11 | T010 | Dana Whitfield | CFO | ACME | 2024-06-04 | 2024-06-20 | buy | 20000.0 | 15.14 |
+| 2 | T001 | Dana Whitfield | CFO | ACME | 2024-06-04 | 2024-06-06 | buy | 20000.0 | 16.04 |
+| 11 | T010 | Dana Whitfield | CFO | ACME | 2024-06-04 | 2024-06-20 | buy | 20000.0 | 16.04 |
 
 ### [WARNING] insider_trades · price_outside_daily_range (1)
 
@@ -157,7 +157,7 @@ Examples:
 
 | csv_line | trade_id | ticker | trade_date | transaction_type | price | low | high |
 |---|---|---|---|---|---|---|---|
-| 10 | T009 | BRL | 2024-05-14 | buy | 538.5 | 53.65 | 55.63 |
+| 10 | T009 | BRL | 2024-05-14 | buy | 591.2 | 57.55 | 59.45 |
 
 ### [WARNING] prices · exact_duplicate_rows (1)
 
@@ -167,7 +167,7 @@ Examples:
 
 | csv_line | date | ticker | open | high | low | close | volume |
 |---|---|---|---|---|---|---|---|
-| 784 | 2024-02-01 | ACME | 17.25 | 17.28 | 16.87 | 16.87 | 219680.0 |
+| 1045 | 2024-02-01 | ACME | 18.41 | 18.53 | 17.88 | 18.03 | 350036.0 |
 
 ### [WARNING] prices · extreme_daily_returns (2)
 
@@ -177,8 +177,8 @@ Examples:
 
 | csv_line | ticker | date | close | prev_close | ret |
 |---|---|---|---|---|---|
-| 443 | BRL | 2024-09-10 | 479.9 | 47.73 | 9.0545 |
-| 444 | BRL | 2024-09-11 | 47.92 | 479.9 | -0.9001 |
+| 704 | BRL | 2024-09-10 | 469.4 | 45.88 | 9.231 |
+| 705 | BRL | 2024-09-11 | 45.88 | 469.4 | -0.9023 |
 
 ### [WARNING] prices · missing_trading_days (4)
 

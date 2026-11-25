@@ -1,2 +1,2 @@
 trade_id,insider_name,insider_role,ticker,trade_date,filing_date,transaction_type,shares,price,csv_line
-T007,Leo Tremblay,VP Ops,CNDR,2024-04-10,2024-04-08,buy,1000.0,10.39,8
+T007,Leo Tremblay,VP Ops,CNDR,2024-04-10,2024-04-08,buy,1000.0,6.73,8

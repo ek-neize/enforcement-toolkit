@@ -1,0 +1,21 @@
+validation_config: config/validation.yaml   # Module 1 runs first; only validated rows are used
+output_dir: reports/detection
+event_study:
+  market_ticker: MKT          # benchmark index (for real data, e.g. a TSX or S&P index ETF)
+  estimation_start: -120      # trading days before the event
+  estimation_end: -11
+  min_estimation_days: 60
+  pre_event_start: -10
+  pre_event_end: -1
+  event_window_end: 1         # news impact measured over days 0 to +1
+  chart_start: -20
+  chart_end: 5
+  extreme_return: 0.50
+  material_t: 2.0
+screening:
+  lookback_days: 30           # calendar days before the event
+  max_filing_lag_days: 5
+  history_days: 180
+  price_range_tolerance: 0.01
+  high_score: 60
+  medium_score: 35
