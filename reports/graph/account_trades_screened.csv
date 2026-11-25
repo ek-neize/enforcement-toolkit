@@ -1,0 +1,6 @@
+event_id,ticker,event_date,trade_id,account_id,account_holder,side,shares,trade_date,trading_days_before,gain_or_loss_avoided,aligned_with_news,linked_insider,hops,connection,evidence,status
+E001,ACME,2024-06-17,A001,ACC-1043,Kevin Whitfield,buy,30000,2024-06-05,8,197400.0,True,Dana Whitfield,2,ACC-1043 ←[account holder]— Kevin Whitfield —[spouse of]→ Dana Whitfield —[CFO]→ ACME,account records; account opening (KYC) form; insider filings,Linked to insider
+E001,ACME,2024-06-17,A002,ACC-2210,Olsen Family Trust,buy,25000,2024-06-11,4,166000.0,True,Marc Olsen,2,ACC-2210 ←[account holder]— Olsen Family Trust ←[trustee of]— Marc Olsen —[Director]→ ACME,account records; trust registry; insider filings,Linked to insider
+E001,ACME,2024-06-17,A004,ACC-5150,Northgate Pension Fund,buy,50000,2024-06-10,5,320000.0,True,,,,,No known link
+E001,ACME,2024-06-17,A005,ACC-6020,Mei Chen,sell,4000,2024-06-12,3,-25600.0,False,,,,,Traded against the news
+E003,CNDR,2024-10-24,A003,ACC-3307,Julie Tremblay,sell,12000,2024-10-21,3,15720.0,True,Leo Tremblay,2,ACC-3307 ←[account holder]— Julie Tremblay —[sibling of]→ Leo Tremblay —[VP Ops]→ CNDR,account records; investigator interview notes; insider filings,Linked to insider

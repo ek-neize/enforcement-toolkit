@@ -39,7 +39,7 @@ def _read_and_parse(path: Path, name: str) -> tuple[pd.DataFrame, list[Issue], s
         df[c] = df[c].str.strip()
     if "ticker" in df:
         df["ticker"] = df["ticker"].str.upper()
-    for c in ("transaction_type", "event_type"):
+    for c in ("transaction_type", "event_type", "side", "source_type", "target_type"):
         if c in df:
             df[c] = df[c].str.lower()
 

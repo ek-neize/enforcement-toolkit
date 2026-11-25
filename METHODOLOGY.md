@@ -18,6 +18,8 @@ record proving the data was not altered afterwards.
 | `prices.csv` | date, ticker, open, high, low, close, volume |
 | `insider_trades.csv` | trade_id, insider_name, insider_role, ticker, trade_date, filing_date, transaction_type, shares, price |
 | `events.csv` | event_id, ticker, event_date, event_type, headline |
+| `account_trades.csv` (optional) | trade_id, account_id, account_holder, ticker, trade_date, side, shares, price |
+| `relationships.csv` (optional) | source, source_type, target, target_type, relation, evidence_source |
 
 Dates must be `YYYY-MM-DD`. Thousands separators in numbers are accepted.
 
@@ -149,7 +151,7 @@ calculation of profit for legal purposes.
 - A flag is a **lead**. Legitimate explanations, such as a pre-arranged trading plan, prior
   public information or personal liquidity needs, can only be established by investigation.
 - It only sees insiders who **reported** their trades. Tipping friends or family, or trading
-  through other accounts, needs account-level data, which Module 3 (entity graph) is meant to link.
+  through other accounts, needs account-level data. Module 3 links that data.
 - Overlapping events for the same stock, or very thin trading, weaken the market model.
 - Sample data is synthetic. The numbers show the method, not real cases.
 
@@ -157,6 +159,74 @@ calculation of profit for legal purposes.
 ```bash
 python -m enforcement_toolkit.validation.cli sample --out data/sample
 python -m enforcement_toolkit.detection.cli --config config/detection.yaml
+```
+
+---
+
+## Module 3: Relationship network
+
+### Question
+Did anyone who is **not** a reporting insider trade profitably before the news, and are they
+connected to an insider who knew?
+
+### Data
+- **Account trades:** account-level records, such as those a regulator obtains from dealers.
+- **Relationships:** known links, each with an `evidence_source` (KYC form, corporate registry,
+  trust registry, interview notes, etc.). Module 1 rejects any link without a source, because an
+  unsourced link can't be relied on.
+
+### The graph
+| Node | Example |
+|---|---|
+| person | Dana Whitfield |
+| entity | Olsen Family Trust, Pinecrest Capital |
+| account | ACC-1043 |
+| company | ACME |
+
+| Link | From |
+|---|---|
+| insider_of (with role) | insider filings |
+| account_holder | account records |
+| spouse_of, trustee_of, director_of, … | relationships.csv |
+
+**Trades are not links.** Two people are not "connected" just because both traded ACME. For the
+same reason, path searches run on the graph **without company nodes**. Only the final step
+"insider → company" is added for readability.
+
+### Steps
+1. Take the material events from Module 2.
+2. Find account trades within 30 calendar days before each event. Classify each one:
+   - **Linked to insider:** traded the profitable way, and a path of up to 4 links exists to an
+     insider of that company. The shortest path is reported, with the source of every link.
+   - **No known link:** traded the profitable way, but no path was found. It is reported, not dropped.
+   - **Traded against the news:** listed for completeness.
+3. For flagged insiders of the same event, check whether they connect to each other through
+   anything other than the company, for example a shared outside directorship.
+
+### Reading a connection
+`A —[x]→ B` means "A is x B", in the direction the link was recorded. For example:
+`ACC-1043 ←[account holder]— Kevin Whitfield —[spouse of]→ Dana Whitfield —[CFO]→ ACME`.
+
+### Charts
+- Shape **and** colour mark the node type, and every node is labelled, so the chart reads in
+  black and white.
+- The layout is chosen to minimise crossing lines and is deterministic: the same data always gives
+  the same picture, which matters for exhibits.
+
+### Known limitations
+- The graph only knows the relationships it is given. "No known link" means none was found,
+  **not** that none exists.
+- A path shows that a route for information *could* exist. It does not show that information
+  passed along it.
+- The shortest path is reported. Other, longer paths may also exist. Explore them in Gephi with
+  `graph.graphml`.
+- Name matching is exact. Real data needs entity resolution, for example "M. Olsen" vs
+  "Marc Olsen" or different spellings across sources.
+
+### Reproduce
+```bash
+python -m enforcement_toolkit.validation.cli sample --out data/sample
+python -m enforcement_toolkit.graph.cli --config config/graph.yaml
 ```
 
 ---

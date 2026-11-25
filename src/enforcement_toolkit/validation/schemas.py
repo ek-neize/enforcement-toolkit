@@ -7,6 +7,10 @@ prices.csv          date, ticker, open, high, low, close, volume
 insider_trades.csv  trade_id, insider_name, insider_role, ticker, trade_date,
                     filing_date, transaction_type, shares, price
 events.csv          event_id, ticker, event_date, event_type, headline
+account_trades.csv  trade_id, account_id, account_holder, ticker, trade_date, side, shares, price
+                    (optional: account-level records, e.g. obtained from dealers)
+relationships.csv   source, source_type, target, target_type, relation, evidence_source
+                    (optional: known links between people / entities / accounts)
 """
 
 from __future__ import annotations
@@ -81,15 +85,70 @@ class EventSchema(pa.DataFrameModel):
         coerce = True
 
 
-SCHEMAS = {"prices": PriceSchema, "insider_trades": InsiderTradeSchema, "events": EventSchema}
+NODE_TYPES = ["person", "entity", "account"]
+
+
+class AccountTradeSchema(pa.DataFrameModel):
+    trade_id: Series[str]
+    account_id: Series[str]
+    account_holder: Series[str]
+    ticker: Series[str] = pa.Field(str_matches=TICKER_PATTERN)
+    trade_date: Series[pd.Timestamp]
+    side: Series[str] = pa.Field(isin=["buy", "sell"])
+    shares: Series[float] = pa.Field(gt=0)
+    price: Series[float] = pa.Field(gt=0)
+
+    class Config:
+        strict = True
+        coerce = True
+
+
+class RelationshipSchema(pa.DataFrameModel):
+    source: Series[str]
+    source_type: Series[str] = pa.Field(isin=NODE_TYPES)
+    target: Series[str]
+    target_type: Series[str] = pa.Field(isin=NODE_TYPES)
+    relation: Series[str]
+    evidence_source: Series[str]  # where the link came from: a link without a source is not evidence
+
+    class Config:
+        strict = True
+        coerce = True
+
+    @pa.dataframe_check(name="no_self_links")
+    def no_self_links(cls, df: pd.DataFrame) -> Series[bool]:
+        return df["source"] != df["target"]
+
+
+SCHEMAS = {
+    "prices": PriceSchema,
+    "insider_trades": InsiderTradeSchema,
+    "events": EventSchema,
+    "account_trades": AccountTradeSchema,
+    "relationships": RelationshipSchema,
+}
 
 # Columns whose values must be unique as a group. Conflicting duplicates = error.
-KEYS = {"prices": ["date", "ticker"], "insider_trades": ["trade_id"], "events": ["event_id"]}
-DATE_COLS = {"prices": ["date"], "insider_trades": ["trade_date", "filing_date"], "events": ["event_date"]}
+KEYS = {
+    "prices": ["date", "ticker"],
+    "insider_trades": ["trade_id"],
+    "events": ["event_id"],
+    "account_trades": ["trade_id"],
+    "relationships": ["source", "target", "relation"],
+}
+DATE_COLS = {
+    "prices": ["date"],
+    "insider_trades": ["trade_date", "filing_date"],
+    "events": ["event_date"],
+    "account_trades": ["trade_date"],
+    "relationships": [],
+}
 NUM_COLS = {
     "prices": ["open", "high", "low", "close", "volume"],
     "insider_trades": ["shares", "price"],
     "events": [],
+    "account_trades": ["shares", "price"],
+    "relationships": [],
 }
 
 # Plain-language explanations for the report. Unlisted rules fall back to the rule name.
@@ -98,6 +157,7 @@ RULE_DESCRIPTIONS = {
     "Usually columns swapped or a bad tick.",
     "low_is_daily_min": "The day's low is above its open, high or close, which is impossible.",
     "volume_is_whole_number": "Volume is not a whole number of shares.",
+    "no_self_links": "A relationship links something to itself.",
     "filing_not_before_trade": "The filing date is earlier than the trade date: one of the two dates is wrong.",
     "not_nullable": "Required value is blank.",
     "greater_than(0)": "Value must be greater than zero.",

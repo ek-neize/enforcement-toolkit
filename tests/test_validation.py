@@ -24,6 +24,7 @@ PLANTED = {
     ("insider_trades", "no_price_coverage"),
     ("events", "conflicting_duplicates"),
     ("events", "insufficient_price_window"),
+    ("relationships", "not_nullable"),
 }
 
 

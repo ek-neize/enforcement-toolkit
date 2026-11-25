@@ -1,6 +1,6 @@
 # Insider Trading Screen
 
-Generated 2026-11-25T00:00:19+00:00 · 3 events studied, 2 material · 4 insider trades matched to events · **4 flagged (3 high priority)**
+Generated 2026-11-25T00:46:53+00:00 · 3 events studied, 2 material · 4 insider trades matched to events · **4 flagged (3 high priority)**
 
 > **How to read this.** A trade is flagged when an insider traded shortly before material news **and** in the direction that would profit from it. Flags are leads for review, not findings of wrongdoing: insiders may have legitimate reasons (e.g. a pre-arranged trading plan), which only an investigation can establish.
 
