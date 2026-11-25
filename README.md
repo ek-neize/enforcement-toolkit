@@ -47,7 +47,12 @@ enforcement-toolkit/
 │   │   ├── charts.py              #   one chart per event with insider trades marked
 │   │   ├── report.py              #   case-team report + CSVs
 │   │   └── cli.py
-│   └── graph/                     # 🔜 entity-relationship network (networkx)
+│   └── graph/                     # ✅ Module 3: relationship network
+│       ├── build.py               #   people, entities, accounts, companies + sourced links
+│       ├── analysis.py            #   account trades before news, shortest path to an insider
+│       ├── charts.py              #   network diagram per event (deterministic layout)
+│       ├── report.py              #   report + GraphML for Gephi
+│       └── cli.py
 ├── notebooks/                     # 🔜 training walkthrough for non-technical staff
 ├── reports/                       # 🔜 case memo, evaluation report
 ├── tests/
@@ -90,6 +95,26 @@ On the sample data it flags the CFO and a director buying ACME before its takeov
 (High priority) and a VP selling CNDR before a guidance cut (Medium). Ordinary trades with no
 news nearby are not flagged.
 
+## Module 3: Relationship network
+
+> **Plain-language summary:** Insiders don't always trade in their own names. This module adds
+> brokerage account records and known relationships (family, trusts, shared board seats), each
+> with the source it came from. It then traces whether accounts that traded profitably before
+> the news connect back to an insider who knew. It shows the chain step by step, for example
+> *account → Kevin Whitfield → spouse of → Dana Whitfield → CFO of ACME*.
+
+```bash
+python -m enforcement_toolkit.graph.cli --config config/graph.yaml
+```
+This runs Modules 1 and 2 first. Outputs go to `reports/graph/`: `network_report.md`, a network
+chart per event, `account_trades_screened.csv`, `insider_links.csv`, and `graph.graphml`
+(open it in [Gephi](https://gephi.org) to explore the network).
+
+On the sample data it links three accounts to insiders: the CFO's spouse, a director's family
+trust and a VP's sister. It also shows that the two ACME insiders sit on the same outside board.
+A pension fund that bought before the news has no known link, and it is reported as such rather
+than ignored.
+
 ## Module 4: LLM document review: design choices (and why they matter for enforcement work)
 
 | Choice | Why |
@@ -126,4 +151,4 @@ python -m enforcement_toolkit.extraction.cli evaluate \
 
 ## Continuous integration
 Every push and pull request runs on GitHub Actions (`.github/workflows/ci.yml`): `ruff` lint and format checks,
-then the test suite on Python 3.10–3.12, then a smoke run of the validator and the detection, whose reports are saved as build artifacts. The tests use a fake LLM client, so CI needs no API key and costs nothing.
+then the test suite on Python 3.10–3.12, then a smoke run of validation, detection and the graph, whose reports are saved as build artifacts. The tests use a fake LLM client, so CI needs no API key and costs nothing.

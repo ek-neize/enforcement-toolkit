@@ -1,0 +1,7 @@
+trade_id,account_id,account_holder,ticker,trade_date,side,shares,price
+A001,ACC-1043,Kevin Whitfield,ACME,2024-06-05,buy,30000,16.07
+A002,ACC-2210,Olsen Family Trust,ACME,2024-06-11,buy,25000,16.01
+A003,ACC-3307,Julie Tremblay,CNDR,2024-10-21,sell,12000,7.82
+A004,ACC-5150,Northgate Pension Fund,ACME,2024-06-10,buy,50000,16.25
+A005,ACC-6020,Mei Chen,ACME,2024-06-12,sell,4000,16.25
+A006,ACC-7781,Ravi Singh,ACME,2024-01-15,buy,1000,19.13

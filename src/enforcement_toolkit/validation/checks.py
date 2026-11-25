@@ -262,6 +262,26 @@ def event_window_coverage(events: pd.DataFrame, prices: pd.DataFrame, t: Thresho
     ]
 
 
+def account_trade_coverage(acct: pd.DataFrame, prices: pd.DataFrame) -> list[Issue]:
+    if acct.empty:
+        return []
+    keys = set(zip(prices["ticker"], prices["date"], strict=True))
+    miss = [(t, d) not in keys for t, d in zip(acct["ticker"], acct["trade_date"], strict=True)]
+    miss = pd.Series(miss, index=acct.index)
+    if not miss.any():
+        return []
+    return [
+        Issue(
+            "account_trades",
+            "no_price_coverage",
+            "warning",
+            int(miss.sum()),
+            "Account trades on a date or ticker with no price data; they cannot be valued.",
+            examples(acct.loc[miss, ["trade_id", "account_id", "ticker", "trade_date"]], with_line=True),
+        )
+    ]
+
+
 def run_all(
     frames: dict[str, pd.DataFrame], t: Thresholds, quarantined: dict[str, pd.DataFrame] | None = None
 ) -> list[Issue]:
@@ -280,4 +300,7 @@ def run_all(
             issues += trade_price_vs_market(tr, p, t)
     if ev is not None and p is not None:
         issues += event_window_coverage(ev, p, t)
+    acct = frames.get("account_trades")
+    if acct is not None and p is not None:
+        issues += account_trade_coverage(acct, p)
     return issues

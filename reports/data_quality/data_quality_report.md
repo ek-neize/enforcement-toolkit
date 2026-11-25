@@ -1,6 +1,6 @@
 # Data Quality Report
 
-**Status: FAIL** · 6 error type(s), 10 warning type(s) · generated 2026-11-24T23:52:00+00:00
+**Status: FAIL** · 7 error type(s), 10 warning type(s) · generated 2026-11-25T00:46:52+00:00
 
 **Errors** mean rows were quarantined and left out of the analysis until resolved with the data provider or case team. **Warnings** do not block analysis but need an analyst's review.
 
@@ -8,9 +8,11 @@
 
 | file | sha256 | bytes | registered | changed since last run |
 |---|---|---|---|---|
-| data/sample/prices.csv | `dc8a8d244886873e…` | 48424 | 2026-11-24T23:52:00+00:00 | no |
-| data/sample/insider_trades.csv | `3fa3a9be49e21593…` | 880 | 2026-11-24T23:52:00+00:00 | no |
-| data/sample/events.csv | `7d01d229c9318854…` | 394 | 2026-11-24T23:52:00+00:00 | no |
+| data/sample/prices.csv | `dc8a8d244886873e…` | 48424 | 2026-11-25T00:46:52+00:00 | no |
+| data/sample/insider_trades.csv | `3fa3a9be49e21593…` | 880 | 2026-11-25T00:46:52+00:00 | no |
+| data/sample/events.csv | `7d01d229c9318854…` | 394 | 2026-11-25T00:46:52+00:00 | no |
+| data/sample/account_trades.csv | `18b836978a2f3439…` | 439 | 2026-11-25T00:46:52+00:00 | no |
+| data/sample/relationships.csv | `7d4ef1e9c064fe5d…` | 577 | 2026-11-25T00:46:52+00:00 | no |
 
 ## Datasets
 
@@ -19,6 +21,8 @@
 | prices | 1045 | 1040 | 4 | 2024-01-02 → 2024-12-31 | 4 |
 | insider_trades | 12 | 11 | 1 | 2024-02-01 → 2024-11-05 | 4 |
 | events | 5 | 3 | 2 | 2024-01-10 → 2024-10-24 | 2 |
+| account_trades | 6 | 6 | 0 | 2024-01-15 → 2024-10-21 | 2 |
+| relationships | 7 | 6 | 1 |  |  |
 
 ## Issues found
 
@@ -30,6 +34,7 @@
 | ERROR | prices | high_is_daily_max | 2 |
 | ERROR | prices | low_is_daily_min | 1 |
 | ERROR | prices | unparseable_number | 1 |
+| ERROR | relationships | not_nullable | 1 |
 | WARNING | events | insufficient_price_window | 1 |
 | WARNING | insider_trades | late_filings | 2 |
 | WARNING | insider_trades | no_price_coverage | 2 |
@@ -105,6 +110,16 @@ Examples:
 | csv_line | date | ticker | open | high | low | close | volume |
 |---|---|---|---|---|---|---|---|
 | 407 | 2024-07-22 | ACME | 20.73 | 20.98 | 20.72 | 20.97 | n/a |
+
+### [ERROR] relationships · not_nullable (1)
+
+`evidence_source` failed the rule `not_nullable`. Required value is blank. Rows quarantined.
+
+Examples:
+
+| csv_line | source | source_type | target | target_type | relation | evidence_source |
+|---|---|---|---|---|---|---|
+| 8 | Sam Reid | person | Marc Olsen | person | friend_of |  |
 
 ### [WARNING] events · insufficient_price_window (1)
 

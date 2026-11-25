@@ -1,0 +1,2 @@
+source,source_type,target,target_type,relation,evidence_source,csv_line
+Sam Reid,person,Marc Olsen,person,friend_of,,8

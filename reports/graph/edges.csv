@@ -1,0 +1,19 @@
+a,b,relation,src,evidence,role
+person:Ana Costa,company:BRL,insider_of,person:Ana Costa,insider filings,Director
+person:Ana Costa,entity:Northgate Pension Fund,former_employee_of,person:Ana Costa,LinkedIn profile,
+company:BRL,person:Priya Raman,insider_of,person:Priya Raman,insider filings,CEO
+person:Dana Whitfield,company:ACME,insider_of,person:Dana Whitfield,insider filings,CFO
+person:Dana Whitfield,person:Kevin Whitfield,spouse_of,person:Kevin Whitfield,account opening (KYC) form,
+person:Dana Whitfield,entity:Pinecrest Capital,director_of,person:Dana Whitfield,corporate registry,
+company:ACME,person:Marc Olsen,insider_of,person:Marc Olsen,insider filings,Director
+person:Leo Tremblay,company:CNDR,insider_of,person:Leo Tremblay,insider filings,VP Ops
+person:Leo Tremblay,person:Julie Tremblay,sibling_of,person:Julie Tremblay,investigator interview notes,
+person:Marc Olsen,entity:Olsen Family Trust,trustee_of,person:Marc Olsen,trust registry,
+person:Marc Olsen,entity:Pinecrest Capital,director_of,person:Marc Olsen,corporate registry,
+person:Sam Reid,company:ZZZZ,insider_of,person:Sam Reid,insider filings,Director
+person:Kevin Whitfield,account:ACC-1043,account_holder,person:Kevin Whitfield,account records,
+entity:Olsen Family Trust,account:ACC-2210,account_holder,entity:Olsen Family Trust,account records,
+person:Julie Tremblay,account:ACC-3307,account_holder,person:Julie Tremblay,account records,
+entity:Northgate Pension Fund,account:ACC-5150,account_holder,entity:Northgate Pension Fund,account records,
+person:Mei Chen,account:ACC-6020,account_holder,person:Mei Chen,account records,
+person:Ravi Singh,account:ACC-7781,account_holder,person:Ravi Singh,account records,

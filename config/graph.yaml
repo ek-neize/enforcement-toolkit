@@ -1,0 +1,5 @@
+detection_config: config/detection.yaml   # runs Module 1 and Module 2 first
+output_dir: reports/graph
+graph:
+  max_hops: 4          # links between an account and an insider (company link not counted)
+  lookback_days: 30    # calendar days before a material event

@@ -1,0 +1,8 @@
+source,source_type,target,target_type,relation,evidence_source
+Kevin Whitfield,person,Dana Whitfield,person,spouse_of,account opening (KYC) form
+Marc Olsen,person,Olsen Family Trust,entity,trustee_of,trust registry
+Dana Whitfield,person,Pinecrest Capital,entity,director_of,corporate registry
+Marc Olsen,person,Pinecrest Capital,entity,director_of,corporate registry
+Julie Tremblay,person,Leo Tremblay,person,sibling_of,investigator interview notes
+Ana Costa,person,Northgate Pension Fund,entity,former_employee_of,LinkedIn profile
+Sam Reid,person,Marc Olsen,person,friend_of,

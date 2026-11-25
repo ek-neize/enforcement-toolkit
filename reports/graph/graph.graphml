@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d5" for="edge" attr.name="role" attr.type="string" />
+  <key id="d4" for="edge" attr.name="evidence" attr.type="string" />
+  <key id="d3" for="edge" attr.name="src" attr.type="string" />
+  <key id="d2" for="edge" attr.name="relation" attr.type="string" />
+  <key id="d1" for="node" attr.name="label" attr.type="string" />
+  <key id="d0" for="node" attr.name="kind" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="person:Ana Costa">
+      <data key="d0">person</data>
+      <data key="d1">Ana Costa</data>
+    </node>
+    <node id="company:BRL">
+      <data key="d0">company</data>
+      <data key="d1">BRL</data>
+    </node>
+    <node id="person:Dana Whitfield">
+      <data key="d0">person</data>
+      <data key="d1">Dana Whitfield</data>
+    </node>
+    <node id="company:ACME">
+      <data key="d0">company</data>
+      <data key="d1">ACME</data>
+    </node>
+    <node id="person:Leo Tremblay">
+      <data key="d0">person</data>
+      <data key="d1">Leo Tremblay</data>
+    </node>
+    <node id="company:CNDR">
+      <data key="d0">company</data>
+      <data key="d1">CNDR</data>
+    </node>
+    <node id="person:Marc Olsen">
+      <data key="d0">person</data>
+      <data key="d1">Marc Olsen</data>
+    </node>
+    <node id="person:Priya Raman">
+      <data key="d0">person</data>
+      <data key="d1">Priya Raman</data>
+    </node>
+    <node id="person:Sam Reid">
+      <data key="d0">person</data>
+      <data key="d1">Sam Reid</data>
+    </node>
+    <node id="company:ZZZZ">
+      <data key="d0">company</data>
+      <data key="d1">ZZZZ</data>
+    </node>
+    <node id="person:Kevin Whitfield">
+      <data key="d0">person</data>
+      <data key="d1">Kevin Whitfield</data>
+    </node>
+    <node id="account:ACC-1043">
+      <data key="d0">account</data>
+      <data key="d1">ACC-1043</data>
+    </node>
+    <node id="entity:Olsen Family Trust">
+      <data key="d0">entity</data>
+      <data key="d1">Olsen Family Trust</data>
+    </node>
+    <node id="account:ACC-2210">
+      <data key="d0">account</data>
+      <data key="d1">ACC-2210</data>
+    </node>
+    <node id="person:Julie Tremblay">
+      <data key="d0">person</data>
+      <data key="d1">Julie Tremblay</data>
+    </node>
+    <node id="account:ACC-3307">
+      <data key="d0">account</data>
+      <data key="d1">ACC-3307</data>
+    </node>
+    <node id="entity:Northgate Pension Fund">
+      <data key="d0">entity</data>
+      <data key="d1">Northgate Pension Fund</data>
+    </node>
+    <node id="account:ACC-5150">
+      <data key="d0">account</data>
+      <data key="d1">ACC-5150</data>
+    </node>
+    <node id="person:Mei Chen">
+      <data key="d0">person</data>
+      <data key="d1">Mei Chen</data>
+    </node>
+    <node id="account:ACC-6020">
+      <data key="d0">account</data>
+      <data key="d1">ACC-6020</data>
+    </node>
+    <node id="person:Ravi Singh">
+      <data key="d0">person</data>
+      <data key="d1">Ravi Singh</data>
+    </node>
+    <node id="account:ACC-7781">
+      <data key="d0">account</data>
+      <data key="d1">ACC-7781</data>
+    </node>
+    <node id="entity:Pinecrest Capital">
+      <data key="d0">entity</data>
+      <data key="d1">Pinecrest Capital</data>
+    </node>
+    <edge source="person:Ana Costa" target="company:BRL">
+      <data key="d2">insider_of</data>
+      <data key="d3">person:Ana Costa</data>
+      <data key="d4">insider filings</data>
+      <data key="d5">Director</data>
+    </edge>
+    <edge source="person:Ana Costa" target="entity:Northgate Pension Fund">
+      <data key="d2">former_employee_of</data>
+      <data key="d3">person:Ana Costa</data>
+      <data key="d4">LinkedIn profile</data>
+    </edge>
+    <edge source="company:BRL" target="person:Priya Raman">
+      <data key="d2">insider_of</data>
+      <data key="d3">person:Priya Raman</data>
+      <data key="d4">insider filings</data>
+      <data key="d5">CEO</data>
+    </edge>
+    <edge source="person:Dana Whitfield" target="company:ACME">
+      <data key="d2">insider_of</data>
+      <data key="d3">person:Dana Whitfield</data>
+      <data key="d4">insider filings</data>
+      <data key="d5">CFO</data>
+    </edge>
+    <edge source="person:Dana Whitfield" target="person:Kevin Whitfield">
+      <data key="d2">spouse_of</data>
+      <data key="d3">person:Kevin Whitfield</data>
+      <data key="d4">account opening (KYC) form</data>
+    </edge>
+    <edge source="person:Dana Whitfield" target="entity:Pinecrest Capital">
+      <data key="d2">director_of</data>
+      <data key="d3">person:Dana Whitfield</data>
+      <data key="d4">corporate registry</data>
+    </edge>
+    <edge source="company:ACME" target="person:Marc Olsen">
+      <data key="d2">insider_of</data>
+      <data key="d3">person:Marc Olsen</data>
+      <data key="d4">insider filings</data>
+      <data key="d5">Director</data>
+    </edge>
+    <edge source="person:Leo Tremblay" target="company:CNDR">
+      <data key="d2">insider_of</data>
+      <data key="d3">person:Leo Tremblay</data>
+      <data key="d4">insider filings</data>
+      <data key="d5">VP Ops</data>
+    </edge>
+    <edge source="person:Leo Tremblay" target="person:Julie Tremblay">
+      <data key="d2">sibling_of</data>
+      <data key="d3">person:Julie Tremblay</data>
+      <data key="d4">investigator interview notes</data>
+    </edge>
+    <edge source="person:Marc Olsen" target="entity:Olsen Family Trust">
+      <data key="d2">trustee_of</data>
+      <data key="d3">person:Marc Olsen</data>
+      <data key="d4">trust registry</data>
+    </edge>
+    <edge source="person:Marc Olsen" target="entity:Pinecrest Capital">
+      <data key="d2">director_of</data>
+      <data key="d3">person:Marc Olsen</data>
+      <data key="d4">corporate registry</data>
+    </edge>
+    <edge source="person:Sam Reid" target="company:ZZZZ">
+      <data key="d2">insider_of</data>
+      <data key="d3">person:Sam Reid</data>
+      <data key="d4">insider filings</data>
+      <data key="d5">Director</data>
+    </edge>
+    <edge source="person:Kevin Whitfield" target="account:ACC-1043">
+      <data key="d2">account_holder</data>
+      <data key="d3">person:Kevin Whitfield</data>
+      <data key="d4">account records</data>
+    </edge>
+    <edge source="entity:Olsen Family Trust" target="account:ACC-2210">
+      <data key="d2">account_holder</data>
+      <data key="d3">entity:Olsen Family Trust</data>
+      <data key="d4">account records</data>
+    </edge>
+    <edge source="person:Julie Tremblay" target="account:ACC-3307">
+      <data key="d2">account_holder</data>
+      <data key="d3">person:Julie Tremblay</data>
+      <data key="d4">account records</data>
+    </edge>
+    <edge source="entity:Northgate Pension Fund" target="account:ACC-5150">
+      <data key="d2">account_holder</data>
+      <data key="d3">entity:Northgate Pension Fund</data>
+      <data key="d4">account records</data>
+    </edge>
+    <edge source="person:Mei Chen" target="account:ACC-6020">
+      <data key="d2">account_holder</data>
+      <data key="d3">person:Mei Chen</data>
+      <data key="d4">account records</data>
+    </edge>
+    <edge source="person:Ravi Singh" target="account:ACC-7781">
+      <data key="d2">account_holder</data>
+      <data key="d3">person:Ravi Singh</data>
+      <data key="d4">account records</data>
+    </edge>
+  </graph>
+</graphml>

@@ -13,6 +13,8 @@ Planted issues (inject_issues=True)
 Also planted for Module 2 (detection):
   * ACME takeover (2024-06-17): price run-up and 3x volume beforehand; CFO and a director buy before it
   * CNDR guidance cut (2024-10-24): a VP sells 7 trading days before the drop
+  * account trades + relationships (Module 3): the CFO's spouse, a director's family trust and
+    the VP's sister trade before the news; a pension fund with no known link does too
   * MKT is a fictional market index; stock returns follow a market model (beta x market + noise)
 """
 
@@ -225,20 +227,61 @@ def _events(inject: bool) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=["event_id", "ticker", "event_date", "event_type", "headline"])
 
 
+def _account_trades(prices: pd.DataFrame) -> pd.DataFrame:
+    """Account-level trades, as a regulator might obtain from dealers. All fictional."""
+    px = prices.set_index(["ticker", "date"])["close"]
+    rows = [
+        # id, account, holder, ticker, date, side, shares
+        ("A001", "ACC-1043", "Kevin Whitfield", "ACME", "2024-06-05", "buy", 30000),  # CFO's spouse
+        ("A002", "ACC-2210", "Olsen Family Trust", "ACME", "2024-06-11", "buy", 25000),  # director's trust
+        ("A003", "ACC-3307", "Julie Tremblay", "CNDR", "2024-10-21", "sell", 12000),  # VP's sister
+        ("A004", "ACC-5150", "Northgate Pension Fund", "ACME", "2024-06-10", "buy", 50000),  # no known link
+        ("A005", "ACC-6020", "Mei Chen", "ACME", "2024-06-12", "sell", 4000),  # traded against the news
+        ("A006", "ACC-7781", "Ravi Singh", "ACME", "2024-01-15", "buy", 1000),  # long before the news
+    ]
+    df = pd.DataFrame(
+        rows, columns=["trade_id", "account_id", "account_holder", "ticker", "trade_date", "side", "shares"]
+    )
+    df["price"] = [round(float(px[(t, d)]), 2) for t, d in zip(df["ticker"], df["trade_date"], strict=True)]
+    return df
+
+
+def _relationships(inject: bool) -> pd.DataFrame:
+    """Known links between people, entities and accounts. `evidence_source` says where each came from."""
+    rows = [
+        ("Kevin Whitfield", "person", "Dana Whitfield", "person", "spouse_of", "account opening (KYC) form"),
+        ("Marc Olsen", "person", "Olsen Family Trust", "entity", "trustee_of", "trust registry"),
+        ("Dana Whitfield", "person", "Pinecrest Capital", "entity", "director_of", "corporate registry"),
+        ("Marc Olsen", "person", "Pinecrest Capital", "entity", "director_of", "corporate registry"),
+        ("Julie Tremblay", "person", "Leo Tremblay", "person", "sibling_of", "investigator interview notes"),
+        ("Ana Costa", "person", "Northgate Pension Fund", "entity", "former_employee_of", "LinkedIn profile"),
+    ]
+    if inject:
+        rows += [("Sam Reid", "person", "Marc Olsen", "person", "friend_of", None)]  # no evidence -> error
+    return pd.DataFrame(
+        rows, columns=["source", "source_type", "target", "target_type", "relation", "evidence_source"]
+    )
+
+
 def make_sample_data(out_dir: str | Path, seed: int = 7, inject_issues: bool = True) -> dict[str, Path]:
     rng = np.random.default_rng(seed)
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     prices = _prices(rng)
     trades = _trades(prices, inject_issues)  # built from clean prices
+    accounts = _account_trades(prices)
     if inject_issues:
         prices = _plant_price_issues(prices)
     paths = {
         "prices": out / "prices.csv",
         "insider_trades": out / "insider_trades.csv",
         "events": out / "events.csv",
+        "account_trades": out / "account_trades.csv",
+        "relationships": out / "relationships.csv",
     }
     prices.to_csv(paths["prices"], index=False)
     trades.to_csv(paths["insider_trades"], index=False)
     _events(inject_issues).to_csv(paths["events"], index=False)
+    accounts.to_csv(paths["account_trades"], index=False)
+    _relationships(inject_issues).to_csv(paths["relationships"], index=False)
     return paths
