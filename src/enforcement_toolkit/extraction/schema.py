@@ -99,5 +99,42 @@ def _inline_refs(schema: dict) -> dict:
     return resolve(schema)
 
 
-def tool_input_schema() -> dict:
-    return _inline_refs(CaseExtraction.model_json_schema())
+_UNSUPPORTED = {
+    "minimum": ">=",
+    "maximum": "<=",
+    "exclusiveMinimum": ">",
+    "exclusiveMaximum": "<",
+    "minLength": "min length",
+    "maxLength": "max length",
+}
+
+
+def _strict(node):
+    """Adapt a JSON schema to the structured-outputs rules of the Claude API:
+    every object gets additionalProperties: false, and unsupported constraints
+    (min/max etc.) move into the description. Pydantic still enforces them when
+    the response is validated, so nothing is lost."""
+    if isinstance(node, list):
+        return [_strict(x) for x in node]
+    if not isinstance(node, dict):
+        return node
+    # drop display titles (strings) but never a *property* called "title" (a dict)
+    out = {
+        k: _strict(v)
+        for k, v in node.items()
+        if k not in _UNSUPPORTED and not (k == "title" and isinstance(v, str))
+    }
+    moved = [f"{_UNSUPPORTED[k]} {node[k]}" for k in _UNSUPPORTED if k in node]
+    if moved:
+        out["description"] = (out.get("description", "") + f" (must be {', '.join(moved)})").strip()
+    if out.get("type") == "object" or "properties" in out:
+        out["additionalProperties"] = False
+    return out
+
+
+def output_schema() -> dict:
+    """Self-contained, structured-outputs-compatible schema for CaseExtraction."""
+    return _strict(_inline_refs(CaseExtraction.model_json_schema()))
+
+
+tool_input_schema = output_schema  # backwards-compatible name

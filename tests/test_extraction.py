@@ -94,3 +94,16 @@ def test_evaluate_normalizes_names():
     assert s["securities"].f1 == 1.0
     assert s["respondents"].precision == 1.0 and s["respondents"].recall == 0.5
     assert s["decision_date"].tp == 1
+
+
+def test_identical_documents_in_parallel_do_not_collide(tmp_path):
+    """Regression: two workers caching the same document at once used to crash on the temp file."""
+    (tmp_path / "raw").mkdir()
+    for i in range(8):
+        (tmp_path / "raw" / f"copy_{i}.txt").write_text(DOC)  # same content -> same cache key
+    docs = load_documents(tmp_path / "raw")
+    m = run_batch(
+        docs, FakeClient(GOOD), tmp_path / "out", PipelineConfig(workers=8), ResultCache(tmp_path / "c")
+    )
+    assert m["status_counts"]["ok"] == 8
+    assert not list((tmp_path / "c").glob("*.tmp"))

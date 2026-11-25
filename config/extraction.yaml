@@ -1,9 +1,24 @@
-model: claude-sonnet-5-5
-max_tokens: 4096
-input_dir: data/raw/decisions
-output_dir: data/processed/extraction_run
+# Module 4: LLM extraction on SEC litigation releases.
+input_dir: data/raw/sec_releases/text        # written by `fetch-sec`
 cache_dir: data/processed/.llm_cache
+output_root: data/processed/extraction       # one folder per run
+gold_dir: data/gold/labels                   # hand-labelled answers (committed to git)
+report_dir: reports/extraction
+max_tokens: 16000                            # covers thinking + answer
+
+runs:                                        # each = one model x prompt version
+  - {name: sonnet-v1.0, model: claude-sonnet-5-5, prompt_version: v1.0, effort: low}
+  - {name: sonnet-v1.1, model: claude-sonnet-5-5, prompt_version: v1.1, effort: low}
+  - {name: haiku-v1.1,  model: claude-haiku-5-5,  prompt_version: v1.1, effort: low}
+
 pipeline:
   workers: 4
   review_threshold: 0.7
   max_chars: 400000
+
+# USD per million tokens, from https://platform.claude.com/docs/en/about-claude/pricing
+# (checked 2026-11-24; Haiku 5.5 price is for prompts up to 100k tokens). Update if prices change.
+pricing_usd_per_mtok:
+  claude-sonnet-5-5: {input: 2.00, output: 10.00}
+  claude-haiku-5-5:  {input: 0.10, output: 0.50}
+pricing_note: "List prices checked 2026-11-24; the Batch API would halve these."

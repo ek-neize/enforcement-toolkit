@@ -20,15 +20,17 @@ from pydantic import ValidationError
 
 from .ingest import Document
 from .llm_client import LLMClient, ResultCache
-from .prompts import PROMPT_VERSION, SYSTEM_PROMPT, build_user_prompt
-from .schema import CaseExtraction, tool_input_schema
+from .prompts import PROMPT_VERSION, build_user_prompt, system_prompt
+from .schema import CaseExtraction, output_schema
 
 log = logging.getLogger(__name__)
-SCHEMA = tool_input_schema()
+SCHEMA = output_schema()
 
 
 @dataclass
 class PipelineConfig:
+    prompt_version: str = PROMPT_VERSION
+    run_name: str = ""
     workers: int = 4
     review_threshold: float = 0.7
     max_chars: int = 400_000
@@ -58,7 +60,8 @@ def process_document(
         "source_path": str(doc.path),
         "source_sha256": doc.sha256,
         "model": client.model,
-        "prompt_version": PROMPT_VERSION,
+        "prompt_version": cfg.prompt_version,
+        "run_name": cfg.run_name,
         "processed_at": _now(),
         "from_cache": False,
         "status": None,
@@ -71,15 +74,18 @@ def process_document(
     if truncated:
         reasons.append(f"truncated_to_{cfg.max_chars}_chars")
 
-    key = ResultCache.key(client.model, PROMPT_VERSION, doc.sha256)
+    key = ResultCache.key(client.model, cfg.prompt_version, doc.sha256)
     cached = cache.get(key) if cache else None
     if cached:
         raw = cached["data"]
         record["from_cache"] = True
+        record["usage"] = cached.get("usage", record["usage"])  # keep the cost of producing it
     else:
         try:
             result = client.extract(
-                SYSTEM_PROMPT, build_user_prompt(doc.doc_id, doc.text[: cfg.max_chars]), SCHEMA
+                system_prompt(cfg.prompt_version),
+                build_user_prompt(doc.doc_id, doc.text[: cfg.max_chars]),
+                SCHEMA,
             )
         except Exception as exc:  # keep the batch alive; record the failure
             log.exception("LLM call failed for %s", doc.doc_id)
@@ -148,12 +154,13 @@ def run_batch(
         "started_at": started,
         "finished_at": _now(),
         "model": client.model,
-        "prompt_version": PROMPT_VERSION,
+        "prompt_version": cfg.prompt_version,
+        "run_name": cfg.run_name,
         "config": asdict(cfg),
         "n_documents": len(records),
         "status_counts": counts,
         "cache_hits": sum(r["from_cache"] for r in records),
-        "tokens": {
+        "tokens": {  # includes tokens of results served from cache (= cost to produce this run)
             "input": sum(r["usage"]["input_tokens"] for r in records),
             "output": sum(r["usage"]["output_tokens"] for r in records),
         },

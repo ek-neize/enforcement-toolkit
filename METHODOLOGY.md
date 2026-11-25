@@ -232,4 +232,79 @@ python -m enforcement_toolkit.graph.cli --config config/graph.yaml
 ---
 
 ## Module 4: LLM document review
-See `README.md` → design choices. A fuller write-up will follow once the evaluation is done.
+
+### Question
+How accurately can an LLM pull standard case facts out of enforcement documents, at what cost,
+and how do we know?
+
+### Corpus
+SEC litigation releases (public U.S. government documents) that mention insider trading, from
+`sec.gov/enforcement-litigation/litigation-releases/lr-NNNNN`. The downloader:
+- identifies itself in the User-Agent, as the SEC requires, and waits 1 second between requests
+- keeps a release only if its body contains an insider-trading keyword
+  (`insider trading`, `material nonpublic information`, `tippee`, `tipped`)
+- saves the raw page **and** the extracted text, and records both SHA-256 hashes in `manifest.csv`
+  and in the Module 1 custody log
+- cuts the release body from its header (`Litigation Release No. … / date`) to the first end marker
+  (`Resources`, `Return to top`, …). If the layout isn't recognised, it keeps the whole page and
+  marks it `complete = False` rather than cutting silently.
+
+### Extraction
+- **Output format:** structured outputs (`output_config.format`, JSON Schema) on API version
+  `2026-10-21`. The schema is generated from the Pydantic model and adapted automatically to the API
+  rules: `additionalProperties: false` everywhere, and numeric limits moved into descriptions.
+  Pydantic re-checks every limit on the response.
+- **Sampling:** current models don't accept `temperature`. Runs are made repeatable instead by
+  **caching**: the same model, prompt version and document always return the stored result.
+- **Effort:** `low` for all runs. This is extraction, not open-ended reasoning, and the setting is
+  recorded in the config.
+- **Checks on every result:** schema validation, every evidence quote found word for word in the
+  source, confidence ≥ 0.7, at least one respondent, start date ≤ end date. Any failure sends the
+  record to the review queue.
+
+### Configurations compared
+| Run | Model | Prompt |
+|---|---|---|
+| sonnet-v1.0 | Claude Sonnet 5.5 | v1.0: general rules only |
+| sonnet-v1.1 | Claude Sonnet 5.5 | v1.1: v1.0 + field definitions |
+| haiku-v1.1 | Claude Haiku 5.5 | v1.1 |
+
+v1.1's definitions cover the ambiguities a case team cares about: the release date vs the filing
+date, relief defendants, sanctions **ordered** vs merely **sought**, and profit vs disgorgement.
+
+### Answer key (gold labels)
+- 50 documents, sampled reproducibly (hash order with a fixed seed). Labelled by hand following
+  `docs/labeling_guide.md`, which uses the same definitions as prompt v1.1.
+- The first 15 are labelled **from blank**. The rest start pre-filled from the `sonnet-v1.0` run and are
+  corrected by hand. Pre-filling is faster but can bias the labeller towards the model's answer, so
+  results on the blank subset are the cleaner measure.
+- Every label is validated against the schema when loaded. A label with an error is reported and
+  left out, never silently used.
+
+### Scoring
+- **List fields** (respondents, securities, conduct types, statutes, sanction kinds): one-to-one
+  matching, then precision, recall and F1 per field.
+  - Names, securities and statutes are normalised first: case, punctuation, corporate suffixes,
+    "10(b)" → "10b", and middle initials for people.
+  - They then match if word overlap or containment is at least 0.8, or if the character similarity
+    is at least 0.92 (typos only). So "Exchange Act Section 10(b)" matches "Section 10(b) of the
+    Securities Exchange Act of 1934", but "Section 17(a)" does not match "Section 10(b)", and
+    "John Smith" does not match "John Smithson". Tests cover these cases.
+  - Conduct types and sanction kinds match exactly.
+- **Dates:** exact. **Amounts:** within 1%.
+- **Macro F1** is the average of the per-field F1 scores, so each field counts equally. A field with nothing in
+  the answer key and nothing predicted is shown as n/a and left out of the average, not counted as 0.
+- **Cost** = input and output tokens × list price, including thinking tokens, which are billed as
+  output. Prices are recorded in `config/extraction.yaml` with the date they were checked.
+
+### Known limitations
+- One labeller: there is no inter-annotator agreement. A second person labelling 10 of the same
+  documents would measure how consistent the labels are.
+- SEC releases are short and well-formatted. Tribunal decisions (long PDFs) are harder, and the
+  results here don't carry over to them automatically.
+- 50 documents give a rough estimate. A difference of a few F1 points between runs may be noise.
+- The model's `confidence` is self-reported. The review queue relies more on the objective checks,
+  such as grounding and schema validation.
+
+### Reproduce
+See README → Module 4 → Workflow. Results: `reports/extraction/comparison.md`.

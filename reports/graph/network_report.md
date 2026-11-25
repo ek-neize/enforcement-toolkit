@@ -1,6 +1,6 @@
 # Relationship Network Report
 
-Generated 2026-11-25T00:57:58+00:00 · graph of 23 entities and 18 links · **3 account trade(s) before material news are linked to an insider of that company**
+Generated 2026-11-25T00:46:54+00:00 · graph of 23 entities and 18 links · **3 account trade(s) before material news are linked to an insider of that company**
 
 > **How to read this.** Module 2 only sees insiders who reported their own trades. This report adds account records and known relationships (family, trusts, shared directorships), then traces whether accounts that traded profitably before the news connect to an insider. A link is a reason to look closer, not proof that information passed along it. Every link lists where it came from. Read connections left to right: `A —[x]→ B` means A is x B (e.g. Kevin —[spouse of]→ Dana).
 

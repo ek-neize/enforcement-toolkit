@@ -12,12 +12,8 @@ dependencies = [
   "pandera>=0.20",
   "matplotlib>=3.8",
   "networkx>=3.2",
-  "scipy>=1.11",
-  "networkx>=3.2",
-  "scipy>=1.11",
   "scipy>=1.11",  # networkx layout (kamada_kawai) needs it
 ]
-
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5"]
@@ -39,5 +35,3 @@ target-version = "py310"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
 ignore = ["E501"]  # line length is handled by `ruff format`
-
-

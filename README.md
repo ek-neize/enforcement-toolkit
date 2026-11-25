@@ -26,12 +26,14 @@ enforcement-toolkit/
 │   └── processed/                 # pipeline outputs + LLM cache (gitignored)
 ├── src/enforcement_toolkit/
 │   ├── extraction/                # ✅ Module 4: LLM document review
+│   │   ├── sec_releases.py        #   polite downloader for SEC litigation releases + custody log
 │   │   ├── schema.py              #   Pydantic output schema = contract with the LLM
-│   │   ├── prompts.py             #   versioned prompts
+│   │   ├── prompts.py             #   versioned prompts (v1.0, v1.1)
 │   │   ├── ingest.py              #   load docs + SHA-256 fingerprint
-│   │   ├── llm_client.py          #   swappable client (forced tool use) + disk cache
+│   │   ├── llm_client.py          #   Claude client (structured outputs) + disk cache
 │   │   ├── pipeline.py            #   batch run, validation, grounding check, routing
-│   │   ├── evaluate.py            #   field-level precision / recall / F1
+│   │   ├── labeling.py            #   gold-label files: sample, pre-fill, validate
+│   │   ├── evaluate.py            #   field-level F1 (fuzzy matching), run comparison, cost
 │   │   └── cli.py
 │   ├── validation/                # ✅ Module 1: intake, chain of custody, data quality
 │   │   ├── custody.py             #   append-only SHA-256 log + verify
@@ -53,6 +55,7 @@ enforcement-toolkit/
 │       ├── charts.py              #   network diagram per event (deterministic layout)
 │       ├── report.py              #   report + GraphML for Gephi
 │       └── cli.py
+├── docs/labeling_guide.md         # rules for the hand-labelled answer key
 ├── notebooks/                     # 🔜 training walkthrough for non-technical staff
 ├── reports/                       # generated reports; case_memo/ = the write-up for a case team
 ├── tests/
@@ -124,39 +127,62 @@ trust and a VP's sister. It also shows that the two ACME insiders sit on the sam
 A pension fund that bought before the news has no known link, and it is reported as such rather
 than ignored.
 
-## Module 4: LLM document review: design choices (and why they matter for enforcement work)
+## Module 4: LLM document review
+
+> **Plain-language summary:** Enforcement teams read large numbers of documents. This module has
+> an LLM read each one and fill in a standard form: who was charged, which company's shares, what
+> conduct, which laws, what sanctions. It must quote the exact sentence behind every answer, and
+> anything doubtful goes to a person. Its accuracy is **measured** against answers a human checked
+> by hand, for two prompt versions and two models, together with what each costs.
+
+**Test corpus:** public SEC litigation releases about insider trading, collected with a polite,
+logged downloader and registered in the Module 1 custody log.
+
+### Design choices (and why they matter for enforcement work)
 
 | Choice | Why |
 |---|---|
-| **Forced tool use with a Pydantic schema** | The model must return valid JSON in a fixed shape, and the same model validates the output. |
-| **Verbatim evidence quotes + grounding check** | Every fact must point to a sentence that appears word for word in the source. Invented quotes are caught automatically. |
-| **Human review queue** | Low confidence, ungrounded quotes, missing respondents or inconsistent dates all send the record to a person. The LLM assists; it does not decide. |
-| **SHA-256 of every source file + prompt version + model in each record** | Chain of custody. Any number can be traced back to its exact inputs. |
-| **Disk cache keyed on (model, prompt, doc hash)** | Re-runs cost nothing and give identical outputs. |
-| **Gold-set evaluation** | Accuracy is a measured number per field, not a claim. |
+| **Structured outputs** with a schema generated from one Pydantic model | The API guarantees JSON in a fixed shape, and the same model validates it. The schema is adapted automatically to the API's rules. |
+| **Verbatim evidence quotes + grounding check** | Every fact must point to a sentence found word for word in the source. Invented quotes are caught automatically. |
+| **Human review queue** | Low confidence, ungrounded quotes, missing respondents or inconsistent dates all go to a person. The LLM assists; it does not decide. |
+| **Versioned prompts** (`v1.0`, `v1.1`) | v1.1 adds field definitions (e.g. "sought" ≠ "ordered" sanctions; relief defendants). Every record names its prompt, and versions are compared on the same answer key. |
+| **Gold labels with a written guide**, some labelled blind | The accuracy number is only as good as the answer key: see [docs/labeling_guide.md](docs/labeling_guide.md). |
+| **Cost tracked per run** | Tokens × list price, so the "which model?" trade-off is explicit. |
+| **Fingerprint (SHA-256) of every source + prompt version + model in each record; disk cache** | Chain of custody. Re-runs cost nothing and give identical outputs. |
 | **Document treated as data** | The prompt tells the model to ignore instructions inside documents (prompt-injection guard). |
+| **Tested against the real SDK** with a local stand-in server | Catches API changes (e.g. `temperature` and forced tool choice are rejected by current models) without spending money. |
 
-## Quick start
+### Workflow
 
 ```bash
 pip install -e ".[dev]"
-export ANTHROPIC_API_KEY=...
-pytest                                   # runs offline with a fake client
+cp .env.example .env            # put your ANTHROPIC_API_KEY in .env, then:
+set -a; source .env; set +a
 
-# put .txt / .pdf decisions in data/raw/decisions/, then:
-python -m enforcement_toolkit.extraction.cli extract --limit 5     # dry run
-python -m enforcement_toolkit.extraction.cli extract
-python -m enforcement_toolkit.extraction.cli evaluate \
-    --pred data/processed/extraction_run/results.jsonl \
-    --gold data/gold/gold.jsonl --csv reports/eval_v1.csv
+# 1. Collect ~120 insider-trading releases (about 15-25 min at 1 request/second)
+python -m enforcement_toolkit.extraction.cli fetch-sec --user-agent "Your Name you@example.com" --start 26694 --want 120
+
+# 2. Dry run on 3 documents, then check data/processed/extraction/sonnet-v1.0/ before spending more
+python -m enforcement_toolkit.extraction.cli extract --run sonnet-v1.0 --limit 3
+python -m enforcement_toolkit.extraction.cli extract --run sonnet-v1.0
+
+# 3. Label 50 documents (15 from blank first), following docs/labeling_guide.md
+python -m enforcement_toolkit.extraction.cli label-prepare --from-run sonnet-v1.0
+python -m enforcement_toolkit.extraction.cli label-status
+
+# 4. Run the other configurations and compare everything against the labels
+python -m enforcement_toolkit.extraction.cli extract --all
+python -m enforcement_toolkit.extraction.cli compare     # -> reports/extraction/comparison.md
 ```
 
-## Next steps
-1. Collect about 300 public decisions, such as Capital Markets Tribunal decisions or SEC litigation releases.
-2. Hand-label about 50 of them into `data/gold/gold.jsonl`, using the same schema.
-3. Compare prompt versions (e.g. v1.0 vs. v1.1 with few-shot examples) and models. Report F1, cost and runtime for each.
-4. For very long documents, add chunked map-reduce extraction instead of truncation.
-5. For large runs, switch to the Message Batches API to cut cost.
+**Cost:** at list prices (Sonnet 5.5 $2 / $10, Haiku 5.5 $0.10 / $0.50 per million input / output
+tokens), the full workflow on ~120 releases should cost **roughly $5–10**, almost all of it Sonnet.
+Step 2's dry run prints the real token counts, so you can check before running the rest.
+
+### Future work
+- Chunked (map-reduce) extraction for very long documents, instead of truncating them.
+- Message Batches API for large runs (half the price, results within 24 hours).
+- Canadian corpus: Capital Markets Tribunal decisions (PDF).
 
 ## Continuous integration
 Every push and pull request runs on GitHub Actions (`.github/workflows/ci.yml`): `ruff` lint and format checks,
