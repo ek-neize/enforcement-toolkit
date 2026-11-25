@@ -38,9 +38,10 @@ DEFAULT_KEYWORDS = (
     "tippee",
     "tipped",
 )
-_SKIP = {"script", "style", "nav", "header", "footer", "aside", "noscript", "svg", "form"}
+_SKIP = {"head", "title", "script", "style", "nav", "header", "footer", "aside", "noscript", "svg", "form"}
 _BLOCK = {"p", "div", "br", "li", "tr", "h1", "h2", "h3", "h4", "h5", "h6", "section", "article", "table"}
-_HEADER = re.compile(r"Litigation Release No\.\s*(\d+)\s*/\s*([A-Z][a-z]+\.? \d{1,2}, \d{4})")
+# "Litigation Release No. 26692 / November 20, 2026" and "Litigation Release No. LR-26376 / August 18, 2025"
+_HEADER = re.compile(r"Litigation Release No\.\s*(?:LR-)?(\d+)\s*/\s*([A-Z][a-z]+\.? \d{1,2}, \d{4})")
 _END_MARKERS = ("Return to top", "Last Reviewed or Updated", "\nResources\n", "\nSee Also\n", "\nSee also\n")
 
 
@@ -80,7 +81,7 @@ class Release:
     date: str
     title: str
     body: str
-    complete: bool  # False if the page layout was not recognised (body = whole page)
+    complete: bool  # False if the release header was not found (body = whole page, needs a look)
 
 
 def parse_release(html: str) -> Release:
@@ -96,7 +97,37 @@ def parse_release(html: str) -> Release:
         body = body[: min(cut)]
     lines = body.splitlines()
     title = lines[1] if len(lines) > 1 else ""
-    return Release(m.group(1), m.group(2), title, body.strip(), complete=bool(cut))
+    # Some releases have no "Resources" block: the body then simply runs to the end of the
+    # main content, which is fine (nav/header/footer are already skipped).
+    return Release(m.group(1), m.group(2), title, body.strip(), complete=True)
+
+
+def reparse(out_dir: str | Path, custody_log: str | Path | None = "data/custody_log.jsonl") -> dict:
+    """Rebuild text/*.txt and manifest.csv from the saved html/*.html (no downloading).
+    Changed text files get a new custody entry linked to their previous hash."""
+    out = Path(out_dir)
+    manifest = out / "manifest.csv"
+    rows = list(csv.DictReader(manifest.open()))
+    custody = CustodyLog(custody_log) if custody_log else None
+    changed = 0
+    for row in rows:
+        hp, tp = out / "html" / f"{row['release']}.html", out / "text" / f"{row['release']}.txt"
+        rel = parse_release(hp.read_text(encoding="utf-8"))
+        new = rel.body + "\n"
+        if not tp.exists() or tp.read_text(encoding="utf-8") != new:
+            tp.write_text(new, encoding="utf-8")
+            changed += 1
+            if custody:
+                custody.register(
+                    tp, source=f"text re-extracted from {hp.name}", note="SEC release text (reparsed)"
+                )
+        row.update(date=rel.date, title=rel.title, complete=rel.complete, text_sha256=sha256_file(tp))
+    with manifest.open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        w.writeheader()
+        w.writerows(rows)
+    return {"releases": len(rows), "text_files_changed": changed,
+            "not_recognised": [r["release"] for r in rows if str(r["complete"]) == "False"]}  # fmt: skip
 
 
 def _get(url: str, user_agent: str, timeout: int = 30) -> str | None:

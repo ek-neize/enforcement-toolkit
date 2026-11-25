@@ -32,6 +32,35 @@ def test_parse_release_keeps_body_only():
         assert junk not in r.body
 
 
+def test_lr_prefix_header_and_no_resources_block():
+    page = (PAGE.replace("No. 26692", "No. LR-26376")
+                .replace("<h3>Resources</h3><ul><li>SEC Complaint</li></ul>", "")
+                .replace("<head>", "<head><title>SEC.gov | Robert Example</title>"))  # fmt: skip
+    r = parse_release(page)
+    assert r.number == "26376" and r.complete
+    assert "SEC.gov |" not in r.body and r.body.startswith("Litigation Release No. LR-26376")
+
+
+def test_reparse_rebuilds_text_and_logs_custody(tmp_path):
+    import csv
+
+    from enforcement_toolkit.extraction.sec_releases import reparse
+    from enforcement_toolkit.validation.custody import CustodyLog
+
+    (tmp_path / "html").mkdir()
+    (tmp_path / "text").mkdir()
+    (tmp_path / "html" / "lr-26692.html").write_text(PAGE)
+    (tmp_path / "text" / "lr-26692.txt").write_text("old, badly cut text")
+    with (tmp_path / "manifest.csv").open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["release", "date", "title", "complete", "text_sha256"])
+        w.writeheader()
+        w.writerow({"release": "lr-26692", "date": "", "title": "", "complete": False, "text_sha256": ""})
+    res = reparse(tmp_path, custody_log=tmp_path / "custody.jsonl")
+    assert res["text_files_changed"] == 1 and res["not_recognised"] == []
+    assert "material nonpublic" in (tmp_path / "text" / "lr-26692.txt").read_text()
+    assert len(CustodyLog(tmp_path / "custody.jsonl").entries()) == 1
+
+
 def test_unrecognised_layout_is_flagged_not_silently_cut():
     r = parse_release("<html><body><p>Some other page</p></body></html>")
     assert not r.complete and "Some other page" in r.body

@@ -33,7 +33,21 @@ and pre-filled subsets shows whether that happened.
 
 Sanction kinds: civil penalty → `administrative_penalty`; disgorgement (with or without
 prejudgment interest) → `disgorgement`; officer-and-director bar → `director_officer_ban`;
-conduct-based or penny-stock bar → `trading_ban`; anything else → `other`.
+conduct-based or penny-stock bar → `trading_ban`; **injunction** (order not to violate the law
+again) → `other`; anything else → `other`. Record **one sanction per respondent** it applies to.
+`permanent: true` only if the document says "permanent" or "permanently".
+
+**Worked example (lr-25903).** "Dupont, Kaplan, and Mendoza each consented to judgments enjoining
+them … In addition, each was barred from serving as an officer or director … The district court
+will determine monetary remedies … at a later date." The correct label has six sanctions: for
+each of the three people, one `other` (injunction) and one `director_officer_ban`
+(`permanent: false`, because it isn't stated). There is no penalty or disgorgement, because those
+haven't been decided yet.
+
+**Conduct types:** use the most specific type. In an insider-trading case, Section 10(b)/Rule 10b-5
+is the legal basis for the charge, not a separate fraud: label `insider_trading` (and `tipping`
+if information was passed on). Add `fraud` only when there is a separate fraud, such as lying to
+investors.
 
 ## When unsure
 

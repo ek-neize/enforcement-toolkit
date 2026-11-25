@@ -44,7 +44,9 @@ Field definitions (follow these exactly):
   Do NOT record relief that is merely "sought" or "requested" in a complaint.
   Map: civil penalty -> administrative_penalty; disgorgement (with or without
   prejudgment interest) -> disgorgement; officer-and-director bar -> director_officer_ban;
-  conduct-based or penny-stock bar -> trading_ban.
+  conduct-based or penny-stock bar -> trading_ban; injunction (an order not to violate
+  the law again) -> other. Record one sanction per respondent it applies to.
+  Do not mark a bar as permanent unless the document says so.
 - legislation_cited: each statute section or rule named as violated, e.g.
   "Section 10(b) of the Securities Exchange Act of 1934", "Rule 10b-5"."""
 )

@@ -42,6 +42,14 @@ def cmd_fetch_sec(args) -> None:
     print(f"Manifest: {path}")
 
 
+def cmd_reparse_sec(args) -> None:
+    from .sec_releases import reparse
+
+    r = reparse(args.out)
+    print(f"{r['releases']} releases, {r['text_files_changed']} text file(s) updated")
+    print(f"Layout not recognised: {', '.join(r['not_recognised']) or 'none'}")
+
+
 def cmd_extract(args) -> None:
     cfg = _cfg(args.config)
     runs = cfg["runs"] if args.all else [r for r in cfg["runs"] if r["name"] == args.run]
@@ -129,6 +137,10 @@ def main() -> None:
     f.add_argument("--delay", type=float, default=1.0, help="Seconds between requests")
     f.add_argument("--out", default="data/raw/sec_releases")
     f.set_defaults(func=cmd_fetch_sec)
+
+    rp = sub.add_parser("reparse-sec", help="Rebuild the text files from the saved pages (no download)")
+    rp.add_argument("--out", default="data/raw/sec_releases")
+    rp.set_defaults(func=cmd_reparse_sec)
 
     e = sub.add_parser("extract", help="Run the LLM extraction")
     g = e.add_mutually_exclusive_group(required=True)
