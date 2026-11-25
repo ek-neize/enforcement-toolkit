@@ -1,0 +1,66 @@
+{
+  "doc_id": "lr-26060",
+  "source_text": "data/raw/sec_releases/text/lr-26060.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Sivannarayana Barama",
+    "decision_date": "2024-07-25",
+    "respondents": [
+      {
+        "name": "Sivannarayana Barama",
+        "entity_type": "individual",
+        "role": "defendant; tippee"
+      }
+    ],
+    "securities": [
+      "Palo Alto Networks, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping",
+      "fraud"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 7000000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Sivannarayana Barama",
+        "amount": {
+          "amount": 6283079.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Sivannarayana Barama",
+        "amount": {
+          "amount": 2179658.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Sivannarayana Barama",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5",
+      "18 U.S.C. § 1348(2)"
+    ]
+  }
+}

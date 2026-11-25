@@ -1,0 +1,50 @@
+{
+  "doc_id": "lr-25913",
+  "source_text": "data/raw/sec_releases/text/lr-25913.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Dozy Mmobuosi, et al.",
+    "decision_date": "2023-12-18",
+    "respondents": [
+      {
+        "name": "Mmobuosi Odogwu Banye a/k/a Dozy Mmobuosi",
+        "entity_type": "individual",
+        "role": "CEO"
+      },
+      {
+        "name": "Tingo Group Inc.",
+        "entity_type": "company",
+        "role": null
+      },
+      {
+        "name": "Agri-Fintech Holdings Inc.",
+        "entity_type": "company",
+        "role": null
+      },
+      {
+        "name": "Tingo International Holdings Inc.",
+        "entity_type": "company",
+        "role": null
+      }
+    ],
+    "securities": [
+      "Tingo Group Inc.",
+      "Agri-Fintech Holdings Inc."
+    ],
+    "conduct_types": [
+      "fraud",
+      "misrepresentation",
+      "insider_trading",
+      "other"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [],
+    "legislation_cited": [
+      "Section 304 of the Sarbanes-Oxley Act"
+    ]
+  }
+}

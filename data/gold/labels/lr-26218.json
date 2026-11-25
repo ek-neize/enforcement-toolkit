@@ -1,0 +1,70 @@
+{
+  "doc_id": "lr-26218",
+  "source_text": "data/raw/sec_releases/text/lr-26218.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Alfred V. Tobia, Jr. and Elizabeth Lee",
+    "decision_date": "2025-01-13",
+    "respondents": [
+      {
+        "name": "Alfred V. Tobia, Jr.",
+        "entity_type": "individual",
+        "role": "former president and chief investment officer of one public company and board member of another; tipper"
+      },
+      {
+        "name": "Elizabeth Lee",
+        "entity_type": "individual",
+        "role": "tippee; sister-in-law of Tobia"
+      }
+    ],
+    "securities": [
+      "Spok Holdings Inc.",
+      "PFSWeb, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 428000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Alfred V. Tobia, Jr.",
+        "amount": null,
+        "duration_years": 5.0,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Alfred V. Tobia, Jr.",
+        "amount": {
+          "amount": 785020.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Elizabeth Lee",
+        "amount": {
+          "amount": 576955.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

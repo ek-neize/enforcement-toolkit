@@ -1,0 +1,78 @@
+{
+  "doc_id": "lr-26567",
+  "source_text": "data/raw/sec_releases/text/lr-26567.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Rakesh Ahuja",
+    "decision_date": null,
+    "respondents": [
+      {
+        "name": "Rakesh Ahuja",
+        "entity_type": "individual",
+        "role": "former employee of an investment advisory firm"
+      }
+    ],
+    "securities": [],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 65000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "trading_ban",
+        "respondent": "Rakesh Ahuja",
+        "amount": null,
+        "duration_years": 2.0,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Rakesh Ahuja",
+        "amount": {
+          "amount": 65404.25,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Rakesh Ahuja",
+        "amount": {
+          "amount": 65404.25,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Rakesh Ahuja",
+        "amount": {
+          "amount": 12289.01,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Rakesh Ahuja",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

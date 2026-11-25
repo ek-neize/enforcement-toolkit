@@ -1,0 +1,19 @@
+{
+  "doc_id": "lr-26364",
+  "source_text": "data/raw/sec_releases/text/lr-26364.txt",
+  "_reviewed": false,
+  "_start": "blank",
+  "_notes": "",
+  "extraction": {
+    "case_title": null,
+    "decision_date": null,
+    "respondents": [],
+    "securities": [],
+    "conduct_types": [],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [],
+    "legislation_cited": []
+  }
+}

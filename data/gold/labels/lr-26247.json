@@ -1,0 +1,54 @@
+{
+  "doc_id": "lr-26247",
+  "source_text": "data/raw/sec_releases/text/lr-26247.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Charlie Jinan Chen, et al.",
+    "decision_date": "2025-01-30",
+    "respondents": [
+      {
+        "name": "Charlie Jinan Chen",
+        "entity_type": "individual",
+        "role": "defendant; tippee"
+      }
+    ],
+    "securities": [
+      "Vistaprint N.V."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 900000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Charlie Jinan Chen",
+        "amount": {
+          "amount": 892827.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Charlie Jinan Chen",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Exchange Act Rule 10b-5",
+      "Securities Act of 1933 Section 17(a)"
+    ]
+  }
+}

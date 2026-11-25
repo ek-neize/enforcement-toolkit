@@ -1,0 +1,60 @@
+{
+  "doc_id": "lr-26013",
+  "source_text": "data/raw/sec_releases/text/lr-26013.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Tyler Loudon",
+    "decision_date": "2024-05-28",
+    "respondents": [
+      {
+        "name": "Tyler Loudon",
+        "entity_type": "individual",
+        "role": "defendant; tipper's husband who misappropriated information (insider trader)"
+      }
+    ],
+    "securities": [
+      "TravelCenters of America Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": "2022-12-22",
+    "conduct_end": "2023-02-06",
+    "profit_or_loss_avoided": {
+      "amount": 1760000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Tyler Loudon",
+        "amount": {
+          "amount": 1760000.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Tyler Loudon",
+        "amount": {
+          "amount": 85600.06,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Tyler Loudon",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": []
+  }
+}

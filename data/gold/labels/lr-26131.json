@@ -1,0 +1,78 @@
+{
+  "doc_id": "lr-26131",
+  "source_text": "data/raw/sec_releases/text/lr-26131.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Bhardwaj et al.",
+    "decision_date": "2024-09-24",
+    "respondents": [
+      {
+        "name": "Dhirenkumar Patel",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Ramesh Chitor",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Lumentum, Inc.",
+      "Coherent, Inc.",
+      "NeoPhotonics Corp."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 1600000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Dhirenkumar Patel",
+        "amount": null,
+        "duration_years": 7.5,
+        "permanent": false
+      },
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Ramesh Chitor",
+        "amount": null,
+        "duration_years": 7.5,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Dhirenkumar Patel",
+        "amount": {
+          "amount": 423074.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Ramesh Chitor",
+        "amount": {
+          "amount": 1244801.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

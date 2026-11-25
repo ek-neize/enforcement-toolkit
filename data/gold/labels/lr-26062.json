@@ -1,0 +1,74 @@
+{
+  "doc_id": "lr-26062",
+  "source_text": "data/raw/sec_releases/text/lr-26062.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Charles Baugh",
+    "decision_date": "2024-07-30",
+    "respondents": [
+      {
+        "name": "Charles Baugh",
+        "entity_type": "individual",
+        "role": "defendant; alleged tipper/trader who misappropriated information from a family member employed by ADT"
+      }
+    ],
+    "securities": [
+      "ADT, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 397000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Charles Baugh",
+        "amount": {
+          "amount": 320908.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Charles Baugh",
+        "amount": {
+          "amount": 473660.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Charles Baugh",
+        "amount": {
+          "amount": 50405.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Charles Baugh",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Section 10(b) of the Securities Exchange Act of 1934",
+      "Rule 10b-5"
+    ]
+  }
+}

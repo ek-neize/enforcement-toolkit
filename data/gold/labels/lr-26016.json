@@ -1,0 +1,35 @@
+{
+  "doc_id": "lr-26016",
+  "source_text": "data/raw/sec_releases/text/lr-26016.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Andre Wong",
+    "decision_date": null,
+    "respondents": [
+      {
+        "name": "Andre Wong",
+        "entity_type": "individual",
+        "role": "former Lumentum executive; defendant"
+      }
+    ],
+    "securities": [
+      "NeoPhotonics Corporation"
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 62000.0,
+      "currency": "USD"
+    },
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b) [15 U.S.C. § 78j(b)]",
+      "Rule 10b-5 [17 C.F.R. § 240.10b-5]"
+    ]
+  }
+}

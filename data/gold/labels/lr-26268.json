@@ -1,0 +1,39 @@
+{
+  "doc_id": "lr-26268",
+  "source_text": "data/raw/sec_releases/text/lr-26268.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Eamma Safi and Zhi Ge a/k/a Josh Ge",
+    "decision_date": "2025-03-14",
+    "respondents": [
+      {
+        "name": "Eamma Safi",
+        "entity_type": "individual",
+        "role": "alleged tipper who obtained material nonpublic information"
+      },
+      {
+        "name": "Zhi Ge",
+        "entity_type": "individual",
+        "role": "alleged tippee; recruited another individual"
+      }
+    ],
+    "securities": [],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 17500000.0,
+      "currency": "USD"
+    },
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

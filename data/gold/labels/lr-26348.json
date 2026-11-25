@@ -1,0 +1,43 @@
+{
+  "doc_id": "lr-26348",
+  "source_text": "data/raw/sec_releases/text/lr-26348.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Trijya Vakil and Neeraj Visen",
+    "decision_date": "2025-07-11",
+    "respondents": [
+      {
+        "name": "Trijya Vakil",
+        "entity_type": "individual",
+        "role": "Senior Director, Product Innovation at Elanco Animal Health, Inc.; tipper"
+      },
+      {
+        "name": "Neeraj Visen",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Kindred Biosciences, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 111884.5,
+      "currency": "USD"
+    },
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5",
+      "Securities Exchange Act of 1934 Section 12",
+      "Securities Exchange Act of 1934 Section 15(d)"
+    ]
+  }
+}

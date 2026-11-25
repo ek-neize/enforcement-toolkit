@@ -1,0 +1,163 @@
+{
+  "doc_id": "lr-25948",
+  "source_text": "data/raw/sec_releases/text/lr-25948.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Roy M. Cook, Jeffrey A. Natrop, Peter S. Renner, James Rudolph and Peter Williams",
+    "decision_date": "2024-03-12",
+    "respondents": [
+      {
+        "name": "Roy M. Cook",
+        "entity_type": "individual",
+        "role": "former member of the Board of Directors of Tallgrass Energy LP; tipper"
+      },
+      {
+        "name": "Jeffrey A. Natrop",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Peter S. Renner",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "James Rudolph",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Peter Williams",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Tallgrass Energy LP"
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping",
+      "other"
+    ],
+    "conduct_start": "2019-08-06",
+    "conduct_end": "2019-12-10",
+    "profit_or_loss_avoided": null,
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Roy Cook",
+        "amount": {
+          "amount": 88800.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Roy Cook",
+        "amount": {
+          "amount": 801742.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Roy Cook",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Jeffrey Natrop",
+        "amount": {
+          "amount": 43862.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Peter Renner",
+        "amount": {
+          "amount": 13520.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "James Rudolph",
+        "amount": {
+          "amount": 31035.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Peter Williams",
+        "amount": {
+          "amount": 524525.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Jeffrey Natrop",
+        "amount": {
+          "amount": 43862.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Peter Renner",
+        "amount": {
+          "amount": 13520.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "James Rudolph",
+        "amount": {
+          "amount": 31035.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Peter Williams",
+        "amount": {
+          "amount": 524525.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act Section 10(b)",
+      "Exchange Act Rule 10b-5",
+      "Exchange Act Section 16(a)"
+    ]
+  }
+}

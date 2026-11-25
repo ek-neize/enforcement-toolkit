@@ -1,0 +1,81 @@
+{
+  "doc_id": "lr-26556",
+  "source_text": "data/raw/sec_releases/text/lr-26556.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Oskar Elmgart and Raymond Leibman",
+    "decision_date": "2026-05-18",
+    "respondents": [
+      {
+        "name": "Oskar Elmgart",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Raymond Leibman",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Matterport, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": "2024-04-16",
+    "conduct_end": "2024-04-19",
+    "profit_or_loss_avoided": {
+      "amount": 93631.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Oskar Elmgart",
+        "amount": {
+          "amount": 63050.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Oskar Elmgart",
+        "amount": {
+          "amount": 63050.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Raymond Leibman",
+        "amount": {
+          "amount": 30581.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Raymond Leibman",
+        "amount": {
+          "amount": 30581.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

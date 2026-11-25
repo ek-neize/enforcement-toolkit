@@ -1,0 +1,46 @@
+{
+  "doc_id": "lr-26653",
+  "source_text": "data/raw/sec_releases/text/lr-26653.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Jordan Meadow, et. al.",
+    "decision_date": "2026-09-29",
+    "respondents": [
+      {
+        "name": "Chris Farrant",
+        "entity_type": "individual",
+        "role": "additional defendant; tipper and trader"
+      },
+      {
+        "name": "Stephen Teixeira",
+        "entity_type": "individual",
+        "role": "previously-charged defendant; original tipper"
+      },
+      {
+        "name": "Jordan Meadow",
+        "entity_type": "individual",
+        "role": "previously-charged defendant; tippee and trader"
+      },
+      {
+        "name": "Ronald Smith",
+        "entity_type": "individual",
+        "role": "tippee; charged in separate action"
+      }
+    ],
+    "securities": [],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "doc_id": "lr-25907",
+  "source_text": "data/raw/sec_releases/text/lr-25907.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Raymond J. Pirrello, Jr., et al.",
+    "decision_date": "2023-12-07",
+    "respondents": [
+      {
+        "name": "Raymond J. Pirrello, Jr.",
+        "entity_type": "individual",
+        "role": "ringleader; defendant"
+      },
+      {
+        "name": "Marcello Follano",
+        "entity_type": "individual",
+        "role": "defendant"
+      },
+      {
+        "name": "Robert Cassino",
+        "entity_type": "individual",
+        "role": "defendant"
+      },
+      {
+        "name": "Anthony DiTucci",
+        "entity_type": "individual",
+        "role": "defendant"
+      },
+      {
+        "name": "Joseph Rivera",
+        "entity_type": "individual",
+        "role": "defendant"
+      },
+      {
+        "name": "Prior 2 IPO Inc.",
+        "entity_type": "company",
+        "role": "defendant"
+      },
+      {
+        "name": "Late Stage Asset Management, LLC",
+        "entity_type": "company",
+        "role": "defendant"
+      },
+      {
+        "name": "Pre IPO Marketing Inc.",
+        "entity_type": "company",
+        "role": "defendant"
+      },
+      {
+        "name": "JL Rivera Enterprises Ltd.",
+        "entity_type": "company",
+        "role": "defendant"
+      }
+    ],
+    "securities": [
+      "pre-IPO company securities"
+    ],
+    "conduct_types": [
+      "fraud",
+      "unregistered_activity",
+      "illegal_distribution",
+      "misrepresentation"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Act of 1933 Section 5(a)",
+      "Securities Act of 1933 Section 5(c)",
+      "Securities Act of 1933 Section 17(a)",
+      "Securities Exchange Act of 1934 Section 15(a)",
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5",
+      "Securities Exchange Act of 1934 Section 20(a)",
+      "Securities Exchange Act of 1934 Section 15(b)(6)(B)(i)"
+    ]
+  }
+}

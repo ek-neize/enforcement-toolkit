@@ -1,0 +1,53 @@
+{
+  "doc_id": "lr-25920",
+  "source_text": "data/raw/sec_releases/text/lr-25920.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Giguiere, et al., No. 1:21-cv-05923 (S.D.N.Y.)",
+    "decision_date": "2023-12-28",
+    "respondents": [
+      {
+        "name": "Gannon Giguiere",
+        "entity_type": "individual",
+        "role": "defendant; tippee who purchased shares"
+      }
+    ],
+    "securities": [
+      "Long Blockchain Company (formerly Long Island Iced Tea Co.)"
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 160000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Gannon Giguiere",
+        "amount": {
+          "amount": 325000.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Gannon Giguiere",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

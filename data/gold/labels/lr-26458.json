@@ -1,0 +1,78 @@
+{
+  "doc_id": "lr-26458",
+  "source_text": "data/raw/sec_releases/text/lr-26458.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Muhammad Saad Shoukat, et al.",
+    "decision_date": "2026-01-06",
+    "respondents": [
+      {
+        "name": "Muhammad Saad Shoukat",
+        "entity_type": "individual",
+        "role": "defendant; brother, tipper/tippee"
+      },
+      {
+        "name": "Muhammad Arham Shoukat",
+        "entity_type": "individual",
+        "role": "defendant; brother"
+      },
+      {
+        "name": "Muhammad Shahwaiz Shoukat",
+        "entity_type": "individual",
+        "role": "defendant; brother"
+      },
+      {
+        "name": "Izunna Okonkwo",
+        "entity_type": "individual",
+        "role": "defendant; tippee"
+      },
+      {
+        "name": "Daniyal Khan",
+        "entity_type": "individual",
+        "role": "defendant; tippee"
+      },
+      {
+        "name": "Justin Kim",
+        "entity_type": "individual",
+        "role": "investment banker; tipper"
+      },
+      {
+        "name": "Mishal Anwar",
+        "entity_type": "individual",
+        "role": "relief defendant"
+      },
+      {
+        "name": "Gozie Okonkwo",
+        "entity_type": "individual",
+        "role": "relief defendant"
+      }
+    ],
+    "securities": [
+      "Olema Pharmaceuticals, Inc",
+      "Opiant Pharmaceuticals, Inc"
+    ],
+    "conduct_types": [
+      "market_manipulation",
+      "insider_trading",
+      "tipping",
+      "fraud",
+      "misrepresentation"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 41000000.0,
+      "currency": "USD"
+    },
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Act of 1933 s. 17(a)",
+      "Securities Exchange Act of 1934 s. 10(b)",
+      "Exchange Act Rule 10b-5",
+      "Securities Exchange Act of 1934 s. 14(e)",
+      "Exchange Act Rule 14e-3"
+    ]
+  }
+}

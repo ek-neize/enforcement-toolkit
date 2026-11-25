@@ -1,0 +1,60 @@
+{
+  "doc_id": "lr-25976",
+  "source_text": "data/raw/sec_releases/text/lr-25976.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Kevin A. Van de Grift and Gil Friedman, No. 1:23-cv-01491 (S.D.N.Y. filed Feb. 22, 2023)",
+    "decision_date": "2024-04-05",
+    "respondents": [
+      {
+        "name": "Gil Friedman",
+        "entity_type": "individual",
+        "role": "former consultant for Francisco Partners Management, L.P.; tipper"
+      },
+      {
+        "name": "Kevin A. Van de Grift",
+        "entity_type": "individual",
+        "role": "tippee; day-trader"
+      }
+    ],
+    "securities": [
+      "Verifone Systems, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": "2018-03-05",
+    "conduct_end": "2018-03-09",
+    "profit_or_loss_avoided": {
+      "amount": 300000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Gil Friedman",
+        "amount": null,
+        "duration_years": 5.0,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Gil Friedman",
+        "amount": {
+          "amount": 298000.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Section 10(b) of the Securities and Exchange Act of 1934",
+      "Rule 10b-5",
+      "Rule 102(e) of the SEC's Rules of Practice"
+    ]
+  }
+}

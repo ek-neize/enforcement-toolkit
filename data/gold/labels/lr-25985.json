@@ -1,0 +1,73 @@
+{
+  "doc_id": "lr-25985",
+  "source_text": "data/raw/sec_releases/text/lr-25985.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Kevin Crotty",
+    "decision_date": "2024-04-26",
+    "respondents": [
+      {
+        "name": "Kevin Crotty",
+        "entity_type": "individual",
+        "role": "former BP senior manager"
+      }
+    ],
+    "securities": [
+      "TravelCenters of America Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": "2023-02-15",
+    "conduct_end": "2023-02-15",
+    "profit_or_loss_avoided": {
+      "amount": 30667.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Kevin Crotty",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Kevin Crotty",
+        "amount": {
+          "amount": 30667.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Kevin Crotty",
+        "amount": {
+          "amount": 30667.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Kevin Crotty",
+        "amount": {
+          "amount": 1274.5,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

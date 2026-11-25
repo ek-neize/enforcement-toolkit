@@ -1,0 +1,57 @@
+{
+  "doc_id": "lr-26689",
+  "source_text": "data/raw/sec_releases/text/lr-26689.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Carlos Sacanell",
+    "decision_date": "2026-10-21",
+    "respondents": [
+      {
+        "name": "Carlos Sacanell",
+        "entity_type": "individual",
+        "role": "defendant"
+      }
+    ],
+    "securities": [
+      "Oak Street Health, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Carlos Sacanell",
+        "amount": {
+          "amount": 617029.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "trading_ban",
+        "respondent": "Carlos Sacanell",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      },
+      {
+        "kind": "other",
+        "respondent": "Carlos Sacanell",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

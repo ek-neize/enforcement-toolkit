@@ -1,0 +1,70 @@
+{
+  "doc_id": "lr-26568",
+  "source_text": "data/raw/sec_releases/text/lr-26568.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Bruce Cameron Conway",
+    "decision_date": "2026-06-16",
+    "respondents": [
+      {
+        "name": "Bruce Cameron Conway",
+        "entity_type": "individual",
+        "role": "defendant"
+      }
+    ],
+    "securities": [
+      "Cancer Genetics"
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Bruce Cameron Conway",
+        "amount": {
+          "amount": 60201.95,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Bruce Cameron Conway",
+        "amount": {
+          "amount": 160936.22,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Bruce Cameron Conway",
+        "amount": {
+          "amount": 19461.39,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Bruce Cameron Conway",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

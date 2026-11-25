@@ -1,0 +1,54 @@
+{
+  "doc_id": "lr-26691",
+  "source_text": "data/raw/sec_releases/text/lr-26691.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Gerard Ryan",
+    "decision_date": "2026-11-18",
+    "respondents": [
+      {
+        "name": "Gerard Ryan",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Kadmon Holdings, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": "2021-07-14",
+    "conduct_end": "2021-07-16",
+    "profit_or_loss_avoided": {
+      "amount": 9258.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Gerard Ryan",
+        "amount": {
+          "amount": 9258.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Gerard Ryan",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Section 10(b) of the Securities Exchange Act of 1934",
+      "Rule 10b-5"
+    ]
+  }
+}

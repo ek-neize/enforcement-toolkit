@@ -1,0 +1,145 @@
+{
+  "doc_id": "lr-26489",
+  "source_text": "data/raw/sec_releases/text/lr-26489.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Joseph C. Lewis, et al.",
+    "decision_date": "2026-02-24",
+    "respondents": [
+      {
+        "name": "Joseph C. Lewis",
+        "entity_type": "individual",
+        "role": "tipper; majority owner and controller of a biotechnology investment fund"
+      },
+      {
+        "name": "Carolyn W. Carter",
+        "entity_type": "individual",
+        "role": "tippee; Lewis's then-girlfriend"
+      },
+      {
+        "name": "Patrick J. O’Connor",
+        "entity_type": "individual",
+        "role": "tippee; private pilot"
+      },
+      {
+        "name": "Bryan L. Waugh",
+        "entity_type": "individual",
+        "role": "tippee; private pilot"
+      }
+    ],
+    "securities": [],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Joseph C. Lewis",
+        "amount": {
+          "amount": 1636645.11,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Carolyn W. Carter",
+        "amount": {
+          "amount": 241154.81,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Carolyn W. Carter",
+        "amount": {
+          "amount": 241154.81,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Patrick J. O’Connor",
+        "amount": {
+          "amount": 24221.53,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Patrick J. O’Connor",
+        "amount": {
+          "amount": 171886.12,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Bryan L. Waugh",
+        "amount": {
+          "amount": 33126.86,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Bryan L. Waugh",
+        "amount": {
+          "amount": 132507.44,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Joseph C. Lewis",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      },
+      {
+        "kind": "other",
+        "respondent": "Carolyn W. Carter",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      },
+      {
+        "kind": "other",
+        "respondent": "Patrick J. O’Connor",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      },
+      {
+        "kind": "other",
+        "respondent": "Bryan L. Waugh",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

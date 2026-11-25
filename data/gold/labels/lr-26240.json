@@ -1,0 +1,63 @@
+{
+  "doc_id": "lr-26240",
+  "source_text": "data/raw/sec_releases/text/lr-26240.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Frank T. Poerio, Jr.",
+    "decision_date": "2025-01-27",
+    "respondents": [
+      {
+        "name": "Frank T. Poerio, Jr.",
+        "entity_type": "individual",
+        "role": "defendant; misappropriated material nonpublic information from a Dick's employee"
+      }
+    ],
+    "securities": [
+      "Dick's Sporting Goods, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 823367.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Frank T. Poerio, Jr.",
+        "amount": {
+          "amount": 823367.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Frank T. Poerio, Jr.",
+        "amount": {
+          "amount": 32967.5,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Frank T. Poerio, Jr.",
+        "amount": null,
+        "duration_years": null,
+        "permanent": true
+      }
+    ],
+    "legislation_cited": [
+      "Exchange Act Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

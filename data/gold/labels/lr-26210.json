@@ -1,0 +1,81 @@
+{
+  "doc_id": "lr-26210",
+  "source_text": "data/raw/sec_releases/text/lr-26210.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Amit Dagar and Atul Bhiwapurkar",
+    "decision_date": "2024-12-27",
+    "respondents": [
+      {
+        "name": "Amit Dagar",
+        "entity_type": "individual",
+        "role": "former Pfizer statistician/employee"
+      },
+      {
+        "name": "Atul Bhiwapurkar",
+        "entity_type": "individual",
+        "role": "friend and business partner of Dagar; trader"
+      }
+    ],
+    "securities": [
+      "Pfizer Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 274695.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Amit Dagar",
+        "amount": {
+          "amount": 214395.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Atul Bhiwapurkar",
+        "amount": {
+          "amount": 60300.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Atul Bhiwapurkar",
+        "amount": {
+          "amount": 60300.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Amit Dagar",
+        "amount": {
+          "amount": 41908.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Section 10(b) of the Securities Exchange Act of 1934",
+      "Rule 10b-5"
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "doc_id": "lr-26217",
+  "source_text": "data/raw/sec_releases/text/lr-26217.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Hari Prasad Sure, et al.",
+    "decision_date": "2025-01-09",
+    "respondents": [
+      {
+        "name": "Hari Prasad Sure",
+        "entity_type": "individual",
+        "role": "software engineer at Twilio Inc. (insider)"
+      },
+      {
+        "name": "Lokesh Lagudu",
+        "entity_type": "individual",
+        "role": "software engineer at Twilio Inc. (insider)"
+      },
+      {
+        "name": "Chotu Prabhu Tej Pulagam",
+        "entity_type": "individual",
+        "role": "software engineer at Twilio Inc. (insider)"
+      },
+      {
+        "name": "Dileep Kumar Reddy Kamujula",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Sai Mounika Nekkalapudi",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Abhishek Dharmapurikar",
+        "entity_type": "individual",
+        "role": "tippee"
+      },
+      {
+        "name": "Chetan Prabhu Sree Karteek Pulagam",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Twilio Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": null,
+    "conduct_end": "2020-05-06",
+    "profit_or_loss_avoided": null,
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Hari Prasad Sure",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Dileep Kumar Reddy Kamujula",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Sai Mounika Nekkalapudi",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Abhishek Dharmapurikar",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Chetan Prabhu Sree Karteek Pulagam",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Lokesh Lagudu",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Chotu Prabhu Tej Pulagam",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Sai Mounika Nekkalapudi",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Abhishek Dharmapurikar",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Chetan Prabhu Sree Karteek Pulagam",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": null,
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

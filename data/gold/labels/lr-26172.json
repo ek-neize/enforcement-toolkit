@@ -1,0 +1,35 @@
+{
+  "doc_id": "lr-26172",
+  "source_text": "data/raw/sec_releases/text/lr-26172.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Robert Brian Thompson",
+    "decision_date": "2024-11-19",
+    "respondents": [
+      {
+        "name": "Robert Brian Thompson",
+        "entity_type": "individual",
+        "role": "banking supervisor and examiner at the Federal Reserve Bank of Richmond"
+      }
+    ],
+    "securities": [
+      "two publicly traded banks under Thompson's supervisory purview (names not stated)"
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": {
+      "amount": 584873.0,
+      "currency": "USD"
+    },
+    "sanctions": [],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}

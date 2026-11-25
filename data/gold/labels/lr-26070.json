@@ -1,0 +1,121 @@
+{
+  "doc_id": "lr-26070",
+  "source_text": "data/raw/sec_releases/text/lr-26070.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Steven D. Targum et al.",
+    "decision_date": "2024-08-08",
+    "respondents": [
+      {
+        "name": "Steven D. Targum",
+        "entity_type": "individual",
+        "role": "consultant to Frequency Therapeutics; tipper"
+      },
+      {
+        "name": "Elliot P. Targum",
+        "entity_type": "individual",
+        "role": "tippee of Steven Targum and tipper to Nicholas Rosenberg"
+      },
+      {
+        "name": "Nicholas J. Rosenberg",
+        "entity_type": "individual",
+        "role": "tippee"
+      }
+    ],
+    "securities": [
+      "Frequency Therapeutics, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading",
+      "tipping"
+    ],
+    "conduct_start": "2023-02-04",
+    "conduct_end": "2023-02-13",
+    "profit_or_loss_avoided": {
+      "amount": 110000.0,
+      "currency": "USD"
+    },
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Steven D. Targum",
+        "amount": {
+          "amount": 86750.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Steven D. Targum",
+        "amount": {
+          "amount": 86750.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Steven D. Targum",
+        "amount": null,
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Elliot P. Targum",
+        "amount": {
+          "amount": 8376.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Elliot P. Targum",
+        "amount": {
+          "amount": 8376.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "director_officer_ban",
+        "respondent": "Elliot P. Targum",
+        "amount": null,
+        "duration_years": 5.0,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Nicholas J. Rosenberg",
+        "amount": {
+          "amount": 15323.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Nicholas J. Rosenberg",
+        "amount": {
+          "amount": 15323.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Exchange Act Rule 10b-5"
+    ]
+  }
+}

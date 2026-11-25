@@ -1,0 +1,98 @@
+{
+  "doc_id": "lr-26408",
+  "source_text": "data/raw/sec_releases/text/lr-26408.txt",
+  "_reviewed": false,
+  "_start": "prefilled from model run",
+  "_notes": "",
+  "extraction": {
+    "case_title": "Securities and Exchange Commission v. Anthony Marsico, Arthur P. Pizzello, Jr., Robert Quattrocchi, and Timothy Carey",
+    "decision_date": "2025-09-10",
+    "respondents": [
+      {
+        "name": "Arthur P. Pizzello. Jr.",
+        "entity_type": "individual",
+        "role": "defendant"
+      },
+      {
+        "name": "Robert Quattrocchi",
+        "entity_type": "individual",
+        "role": "defendant"
+      }
+    ],
+    "securities": [
+      "Goodness Growth Holdings, Inc."
+    ],
+    "conduct_types": [
+      "insider_trading"
+    ],
+    "conduct_start": null,
+    "conduct_end": null,
+    "profit_or_loss_avoided": null,
+    "sanctions": [
+      {
+        "kind": "disgorgement",
+        "respondent": "Arthur P. Pizzello. Jr.",
+        "amount": {
+          "amount": 124456.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Arthur P. Pizzello. Jr.",
+        "amount": {
+          "amount": 124456.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Arthur P. Pizzello. Jr.",
+        "amount": {
+          "amount": 26933.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "disgorgement",
+        "respondent": "Robert Quattrocchi",
+        "amount": {
+          "amount": 28136.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "administrative_penalty",
+        "respondent": "Robert Quattrocchi",
+        "amount": {
+          "amount": 28136.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      },
+      {
+        "kind": "other",
+        "respondent": "Robert Quattrocchi",
+        "amount": {
+          "amount": 6002.0,
+          "currency": "USD"
+        },
+        "duration_years": null,
+        "permanent": false
+      }
+    ],
+    "legislation_cited": [
+      "Securities Exchange Act of 1934 Section 10(b)",
+      "Rule 10b-5"
+    ]
+  }
+}
